@@ -17,7 +17,7 @@ class LoginOtpNotification extends Notification
     public function toMail(object $notifiable): MailMessage
     {
         return (new MailMessage)
-            ->subject('Votre code de connexion WorldCup')
+            ->subject('Votre code de connexion Tiny Soccer Predictions')
             ->greeting('Bonjour !')
             ->line('Voici votre code de connexion :')
             ->line("**{$this->code}**")

@@ -20,7 +20,7 @@ class DatabaseSeeder extends Seeder
 // Admin
         User::create([
             'name'  => 'Admin',
-            'email' => 'admin@worldcup.local',
+            'email' => 'admin@tinysp.local',
             'role'  => 'admin',
         ]);
 

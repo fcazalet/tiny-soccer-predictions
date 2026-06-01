@@ -7,7 +7,7 @@ echo "🚀 Installation de Laravel..."
 echo "⚙️  Configuration du .env..."
 docker compose run --rm -u root app bash -c "
 cat > /var/www/html/.env << 'EOF'
-APP_NAME=TinySoccerPredictions
+APP_NAME=Tiny Soccer Predictions
 APP_ENV=local
 APP_KEY=
 APP_DEBUG=true
@@ -27,7 +27,7 @@ MAIL_USERNAME=null
 MAIL_PASSWORD=null
 MAIL_ENCRYPTION=null
 MAIL_FROM_ADDRESS=noreply@tinysp.local
-MAIL_FROM_NAME=TinySoccerPredictions
+MAIL_FROM_NAME=Tiny Soccer Predictions
 EOF
 "
 

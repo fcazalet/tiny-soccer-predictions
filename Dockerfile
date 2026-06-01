@@ -11,7 +11,9 @@ RUN apk add --no-cache \
     freetype-dev \
     oniguruma-dev \
     libxml2-dev \
-    zip
+    zip \
+    nodejs \
+    npm
 
 # Extensions PHP
 RUN docker-php-ext-install \

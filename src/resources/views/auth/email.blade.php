@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Connexion – WorldCup</title>
+    <title>Connexion – Tiny Soccer Predictions</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-50 flex items-center justify-center min-h-screen">
     <div class="bg-white rounded-2xl shadow-md p-8 w-full max-w-sm">
         <div class="text-center mb-6">
             <div class="text-4xl mb-2">⚽</div>
-            <h1 class="text-2xl font-bold text-gray-800">WorldCup Pronostics</h1>
+            <h1 class="text-2xl font-bold text-gray-800">Tiny Soccer Predictions</h1>
             <p class="text-gray-500 text-sm mt-1">Entrez votre email pour recevoir un code</p>
         </div>
 

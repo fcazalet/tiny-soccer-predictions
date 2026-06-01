@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@yield('title', 'WorldCup Pronostics') ⚽</title>
+    <title>@yield('title', 'Tiny Soccer Predictions') ⚽</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-100 min-h-screen">
 
     <nav class="bg-green-700 text-white shadow">
         <div class="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between">
-            <a href="{{ route('dashboard') }}" class="font-bold text-lg tracking-tight">⚽ WorldCup Pronostics</a>
+            <a href="{{ route('dashboard') }}" class="font-bold text-lg tracking-tight">⚽ Tiny Soccer Predictions</a>
             <div class="flex items-center gap-4 text-sm">
                 @auth
                     <span class="opacity-75">{{ auth()->user()->name }}</span>
