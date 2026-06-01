@@ -1,6 +1,6 @@
-# ⚽ WorldCup Pronostics
+# ⚽ Tiny Soccer Predictions
 
-Application de pronostics pour la Coupe du Monde, avec authentification passwordless par email (OTP).
+Lightweight PHP web app for creating soccer prediction competitions between small groups of friends or colleagues. Authentication with email address and one-time-password (OTP).
 
 ## Stack
 
