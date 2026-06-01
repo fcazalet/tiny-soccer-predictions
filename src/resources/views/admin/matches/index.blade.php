@@ -4,16 +4,16 @@
 @section('content')
 
 <div class="flex items-center justify-between mb-6">
-    <h1 class="text-2xl font-bold text-gray-800">⚙️ Gestion des matchs</h1>
+    <h1 class="text-2xl font-bold text-gray-800">⚙️ {{ __('app.manage_matches')}}</h1>
     <a href="{{ route('admin.matches.create') }}"
        class="bg-green-500 hover:bg-green-600 text-white text-sm font-semibold px-4 py-2 rounded-lg transition">
-        + Nouveau match
+        + {{ __('app.new_match')}}
     </a>
 </div>
 
-@foreach(['group' => 'Phase de groupes', 'r16' => 'Huitièmes', 'qf' => 'Quarts', 'sf' => 'Demi-finales', 'final' => 'Finale'] as $phase => $label)
+@foreach(['group', 'r16', 'qf', 'sf', 'final'] as $phase)
     @if($matches->has($phase))
-        <h2 class="text-lg font-semibold text-gray-600 mt-6 mb-3">{{ $label }}</h2>
+        <h2 class="text-lg font-semibold text-gray-600 mt-6 mb-3">{{ __('app.phase_'.$phase)}}</h2>
         <div class="bg-white rounded-2xl shadow overflow-hidden mb-4">
             @foreach($matches[$phase] as $match)
                 <div class="flex items-center justify-between px-5 py-4 border-b border-gray-100 last:border-0">
@@ -35,7 +35,7 @@
                     </div>
                     <a href="{{ route('admin.matches.score', $match) }}"
                        class="text-sm text-green-600 hover:underline ml-4">
-                        {{ $match->isFinished() ? 'Modifier le score' : 'Saisir le score' }}
+                        {{ $match->isFinished() ? __('app.update_score') : __('app.set_score') }}
                     </a>
                 </div>
             @endforeach

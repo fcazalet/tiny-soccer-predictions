@@ -1,18 +1,18 @@
 @extends('layouts.app')
-@section('title', 'Dashboard')
+@section('title', __('app.dashboard'))
 
 @section('content')
 
 {{-- Classement --}}
 <div class="mb-8">
-    <h2 class="text-xl font-bold text-gray-800 mb-4">🏆 Classement</h2>
+    <h2 class="text-xl font-bold text-gray-800 mb-4">🏆 {{ __('app.leaderboard') }}</h2>
     <div class="bg-white rounded-2xl shadow overflow-hidden">
         <table class="w-full text-sm">
             <thead class="bg-gray-50 text-gray-500 uppercase text-xs">
                 <tr>
                     <th class="px-4 py-3 text-left">#</th>
-                    <th class="px-4 py-3 text-left">Joueur</th>
-                    <th class="px-4 py-3 text-right">Points</th>
+                    <th class="px-4 py-3 text-left">{{ __('app.player') }}</th>
+                    <th class="px-4 py-3 text-right">{{ __('app.points') }}</th>
                 </tr>
             </thead>
             <tbody class="divide-y divide-gray-100">
@@ -30,7 +30,7 @@
                         </td>
                     </tr>
                 @empty
-                    <tr><td colspan="3" class="px-4 py-4 text-center text-gray-400">Aucun joueur pour l'instant.</td></tr>
+                    <tr><td colspan="3" class="px-4 py-4 text-center text-gray-400">{{ __('app.noplayer') }}</td></tr>
                 @endforelse
             </tbody>
         </table>
@@ -39,7 +39,7 @@
 
 {{-- Matchs à pronostiquer --}}
 <div class="mb-8">
-    <h2 class="text-xl font-bold text-gray-800 mb-4">📋 Matchs à pronostiquer</h2>
+    <h2 class="text-xl font-bold text-gray-800 mb-4">📋 {{ __('app.upcoming_matches') }}</h2>
     @forelse($upcomingMatches as $match)
         <div class="bg-white rounded-2xl shadow p-5 mb-4">
             <div class="flex items-center justify-between mb-3">
@@ -47,7 +47,7 @@
                     {{ $match->phaseLabel() }} · {{ $match->played_at->format('d/m/Y H:i') }}
                 </span>
                 @if($userPredictions->has($match->id))
-                    <span class="text-xs bg-green-100 text-green-700 px-2 py-1 rounded-full">✓ Pronostic enregistré</span>
+                    <span class="text-xs bg-green-100 text-green-700 px-2 py-1 rounded-full">✓ {{ __('app.prediction_registered') }}</span>
                 @endif
             </div>
 
@@ -85,14 +85,14 @@
         </div>
     @empty
         <div class="bg-white rounded-2xl shadow p-6 text-center text-gray-400">
-            Aucun match à pronostiquer pour l'instant.
+            {{ __('app.nomatch') }}
         </div>
     @endforelse
 </div>
 
 {{-- Résultats récents --}}
 <div>
-    <h2 class="text-xl font-bold text-gray-800 mb-4">✅ Résultats récents</h2>
+    <h2 class="text-xl font-bold text-gray-800 mb-4">✅ {{ __('app.recent_results') }}</h2>
     <div class="bg-white rounded-2xl shadow overflow-hidden">
         @forelse($finishedMatches as $match)
             @php $prediction = $match->predictions->first(); @endphp
@@ -110,17 +110,17 @@
                 </div>
                 <div class="ml-4 text-right min-w-[80px]">
                     @if($prediction)
-                        <div class="text-xs text-gray-400">Votre prono : {{ $prediction->scoreLabel() }}</div>
+                        <div class="text-xs text-gray-400">{{ __('app.your_prediction')}} : {{ $prediction->scoreLabel() }}</div>
                         <div class="text-sm font-bold {{ $prediction->points_earned > 0 ? 'text-green-600' : 'text-gray-400' }}">
                             +{{ $prediction->points_earned }} pt{{ $prediction->points_earned > 1 ? 's' : '' }}
                         </div>
                     @else
-                        <div class="text-xs text-gray-300">Pas de pronostic</div>
+                        <div class="text-xs text-gray-300">{{ __('app.noprediction') }}</div>
                     @endif
                 </div>
             </div>
         @empty
-            <div class="px-5 py-4 text-center text-gray-400 text-sm">Aucun résultat pour l'instant.</div>
+            <div class="px-5 py-4 text-center text-gray-400 text-sm">{{ __('app.noresult') }}</div>
         @endforelse
     </div>
 </div>

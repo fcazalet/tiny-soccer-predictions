@@ -10,7 +10,7 @@
 
     <nav class="bg-green-700 text-white shadow">
         <div class="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between">
-            <a href="{{ route('dashboard') }}" class="font-bold text-lg tracking-tight">⚽ Tiny Soccer Predictions</a>
+            <a href="{{ route('dashboard') }}" class="font-bold text-lg tracking-tight">⚽ {{ config('app.name') }}</a>
             <div class="flex items-center gap-4 text-sm">
                 @auth
                     <span class="opacity-75">{{ auth()->user()->name }}</span>
@@ -19,7 +19,7 @@
                     @endif
                     <form action="{{ route('logout') }}" method="POST">
                         @csrf
-                        <button type="submit" class="hover:underline">Déconnexion</button>
+                        <button type="submit" class="hover:underline">{{ __('app.logout') }}</button>
                     </form>
                 @endauth
             </div>
