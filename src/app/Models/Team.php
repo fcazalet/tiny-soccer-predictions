@@ -32,8 +32,9 @@ class Team extends Model
     // Helpers
     public function displayName(): string
     {
+        $name = __('countries.' . $this->name);
         return $this->flag_emoji
-            ? "{$this->flag_emoji} {$this->name}"
-            : $this->name;
+            ? "{$this->flag_emoji} {$name}"
+            : $name;
     }
 }
