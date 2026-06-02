@@ -105,13 +105,7 @@ class Fixture extends Model
 
     public function phaseLabel(): string
     {
-        return match($this->phase) {
-            'group'  => 'Phase de groupes',
-            'r16'    => 'Huitièmes de finale',
-            'qf'     => 'Quarts de finale',
-            'sf'     => 'Demi-finales',
-            'final'  => 'Finale',
-            default  => $this->phase,
-        };
+        $label = __('app.phase_' . $this->phase);
+        return $label;
     }
 }

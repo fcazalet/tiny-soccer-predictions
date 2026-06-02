@@ -41,5 +41,17 @@
         @yield('content')
     </main>
 
+    <footer class="fixed bottom-0 left-0 right-0 border-t border-gray-200 dark:border-gray-700 py-4 px-6 bg-white dark:bg-gray-900 z-10">
+        <div class="flex justify-between items-center flex-wrap gap-2">
+        <span class="text-sm text-gray-500 dark:text-gray-400">
+            <span class="font-medium text-gray-900 dark:text-gray-100">⚽ Tiny Soccer Predictions</span>
+            &mdash; Match predictions · Made simple
+        </span>
+
+            <span class="text-sm text-gray-400 dark:text-gray-500">
+                GitHub: <a href="https://github.com/fcazalet/tiny-soccer-predictions"><span class="font-medium text-gray-600 dark:text-gray-300">@fcazalet</span></a>
+        </span>
+        </div>
+    </footer>
 </body>
 </html>

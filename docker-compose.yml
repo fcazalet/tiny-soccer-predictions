@@ -39,7 +39,7 @@ services:
       MYSQL_USER: tinysp
       MYSQL_PASSWORD: tinysp
     volumes:
-      - db_data:/var/lib/mysql
+      - ./mysql-data:/var/lib/mysql
     healthcheck:
       test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
       interval: 5s

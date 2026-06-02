@@ -12,31 +12,57 @@ Lightweight PHP web app for creating soccer prediction competitions between smal
 
 ---
 
-## 🚀 Installation
+## 🚀 Install
 
-### 1. Prérequis
+### 1. Prerequisites
 
-- Docker + Docker Compose installés
-- Ports `8080` et `8025` disponibles
+- Docker + Docker Compose installed
+- Ports `8080` et `8025` available
 
-### 2. Démarrer les conteneurs
+### 2. Start containers
 
 ```bash
 docker compose up -d
 ```
 
-### 3. Installer Laravel (première fois uniquement)
+### 3. Install dependencies
+
+```bash
+docker compose exec app composer install
+```
+
+### 4. Configure and customize
+
+Modify setup.sh to meet your needs then run :
 
 ```bash
 chmod +x setup.sh
 ./setup.sh
 ```
 
-### 7. Lancer les migrations
+### 5. Initialize DB on Worldcup2026
 
 ```bash
-docker compose exec app php artisan migrate
+docker compose exec app php artisan db:seed --class=WorldCup2026Seeder
 ```
+
+### Change language
+
+Default language is english.
+
+#### French 🇫🇷
+
+For French language, add this line in .env file:
+
+    APP_LOCALE=fr
+
+Then clear cache :
+
+```bash
+docker compose exec app php artisan optimize:clear
+```
+
+Now language is french.
 
 ---
 
@@ -66,6 +92,12 @@ docker compose exec app php artisan <commande>
 
 # Vider le cache
 docker compose exec app php artisan optimize:clear
+
+# Migrate DB
+docker compose exec app php artisan migrate
+
+# Load data for Soccer WorldCup 2026
+docker compose exec app php artisan migrate
 ```
 
 ---
