@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class LoginToken extends Model
 {
-    use HasUuids;
+//    use HasUuids;
 
     protected $fillable = ['email', 'token', 'expires_at'];
 

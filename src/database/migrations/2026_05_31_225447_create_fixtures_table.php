@@ -9,9 +9,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('fixtures', function (Blueprint $table) {
-            $table->uuid('id')->primary();
-            $table->foreignUuid('home_team_id')->constrained('teams');
-            $table->foreignUuid('away_team_id')->constrained('teams');
+            $table->id();
+            $table->foreignId('home_team_id')->constrained('teams');
+            $table->foreignId('away_team_id')->constrained('teams');
             $table->enum('phase', ['group', 'r16', 'qf', 'sf', 'final']);
             $table->timestamp('played_at');
             $table->unsignedTinyInteger('home_score')->nullable();

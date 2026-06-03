@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Fixture extends Model
 {
-    use HasUuids;
+//    use HasUuids;
 
     protected $fillable = [
         'home_team_id', 'away_team_id',

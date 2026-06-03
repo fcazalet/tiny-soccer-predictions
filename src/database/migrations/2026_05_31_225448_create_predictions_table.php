@@ -9,9 +9,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('predictions', function (Blueprint $table) {
-            $table->uuid('id')->primary();
-            $table->foreignUuid('user_id')->constrained()->cascadeOnDelete();
-            $table->foreignUuid('fixture_id')->constrained('fixtures')->cascadeOnDelete();
+            $table->id();
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('fixture_id')->constrained('fixtures')->cascadeOnDelete();
             $table->unsignedTinyInteger('home_score');
             $table->unsignedTinyInteger('away_score');
             $table->unsignedTinyInteger('points_earned')->nullable(); // null = match pas encore joué

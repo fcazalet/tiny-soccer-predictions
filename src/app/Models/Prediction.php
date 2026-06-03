@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Prediction extends Model
 {
-    use HasUuids;
+//    use HasUuids;
 
     protected $fillable = [
         'user_id', 'fixture_id',

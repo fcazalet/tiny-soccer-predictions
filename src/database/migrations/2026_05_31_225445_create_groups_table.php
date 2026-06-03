@@ -9,7 +9,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('groups', function (Blueprint $table) {
-            $table->uuid('id')->primary();
+            $table->id();
             $table->string('name', 1)->unique(); // A, B, C…
             $table->timestamps();
         });

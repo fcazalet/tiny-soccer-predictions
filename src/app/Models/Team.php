@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Team extends Model
 {
-    use HasUuids;
+//    use HasUuids;
 
     protected $fillable = ['group_id', 'name', 'flag_emoji', 'played', 'points'];
 
