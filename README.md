@@ -101,3 +101,11 @@ docker compose exec app php artisan migrate
 ```
 
 ---
+
+## 🔄 Benchmark
+
+Running Docker Compose on IDLE (CORE i3-3110 2.40GHz, RAM 4Go):
+ * Nginx : CPU <0.01%, MEM ~4MB
+ * PHP-FPM : CPU 0.01%, MEM ~40MB
+ * MARIADB : CPU 0.02%, MEM ~20MB
+ * MAILPIT (optional on production) : CPU <0.01%, MEM ~40MB
