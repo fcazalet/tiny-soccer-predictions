@@ -106,6 +106,23 @@ Now language is french.
 
 ---
 
+## 🌐 To production live !
+
+Change .env variables:
+
+```conf
+APP_DEBUG=false
+APP_URL=http://XX.XX.XX.XX:8080
+```
+
+Note: Database session seems to not work. Please use file mode for production:
+
+```conf
+SESSION_DRIVER=file
+```
+
+---
+
 ## 🔄 Commandes utiles
 
 ```bash
