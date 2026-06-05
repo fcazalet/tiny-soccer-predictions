@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Connexion – Tiny Soccer Predictions</title>
+    <title>{{ __('app.connection') }} – {{ config('app.name') }}</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-50 flex items-center justify-center min-h-screen">
     <div class="bg-white rounded-2xl shadow-md p-8 w-full max-w-sm">
         <div class="text-center mb-6">
             <div class="text-4xl mb-2">⚽</div>
-            <h1 class="text-2xl font-bold text-gray-800">Tiny Soccer Predictions</h1>
-            <p class="text-gray-500 text-sm mt-1">Entrez votre email pour recevoir un code</p>
+            <h1 class="text-2xl font-bold text-gray-800">{{ config('app.name') }}</h1>
+            <p class="text-gray-500 text-sm mt-1">{{ __('app.email_desc') }}</p>
         </div>
 
         @if ($errors->any())
@@ -22,7 +22,7 @@
 
         <form action="{{ route('auth.otp.send') }}" method="POST">
             @csrf
-            <label class="block text-sm font-medium text-gray-700 mb-1">Adresse email</label>
+            <label class="block text-sm font-medium text-gray-700 mb-1">{{ __('app.email_address')}}</label>
             <input
                 type="email"
                 name="email"
@@ -36,7 +36,7 @@
                 type="submit"
                 class="w-full bg-green-500 hover:bg-green-600 text-white font-semibold py-2 rounded-lg transition"
             >
-                Recevoir mon code →
+                {{ __('app.code_receive')}} →
             </button>
         </form>
     </div>

@@ -1,5 +1,4 @@
 <?php
-// lang/en/app.php
 return [
     'dashboard'        => 'Dashboard',
     'leaderboard'      => 'Leaderboard',
@@ -9,8 +8,20 @@ return [
     'save'             => 'Save',
     'edit'             => 'Edit',
     'logout'           => 'Logout',
+    'cancel'           => 'Cancel',
+    'validate'         => 'Validate',
+    'connection'       => 'Connection',
+    'email_desc'       => 'Enter your email to receive a code',
+    'email_address'       => 'Email address',
+    'code_receive'       => 'Receive my code',
+    'code_connection'  => 'Connection code',
+    'check_mails'       => 'Check your mails',
+    'code_sent_to'       => 'Code sent to',
+    'six_number_code'       => 'Six number code',
+    'change_mail'       => 'Change mail',
+    'code_exp_desc'       => 'This code expires in 10 minutes',
+    'save_and_calculate'       => 'Save & calculate points',
     'points_unit'           => 'pts',
-
     'group'   => 'Group',
     'noplayer' => 'No players yet.',
     'nomatch'  => 'No matches to predict at the moment.',

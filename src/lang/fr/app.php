@@ -1,6 +1,4 @@
 <?php
-
-// lang/fr/app.php
 return [
     'dashboard'        => 'Tableau de bord',
     'leaderboard'      => 'Classement',
@@ -10,6 +8,19 @@ return [
     'save'             => 'Valider',
     'edit'             => 'Modifier',
     'logout'           => 'Déconnexion',
+    'cancel'           => 'Annuler',
+    'validate'         => 'Valider',
+    'connection'       => 'Connexion',
+    'email_desc'       => 'Entrez votre email pour recevoir un code',
+    'email_address'    => 'Adresse email',
+    'code_receive'     => 'Recevoir mon code',
+    'code_connection'  => 'Code de connexion',
+    'check_mails'       => 'Vérifiez vos emails',
+    'code_sent_to'       => 'Code envoyé à',
+    'six_number_code'       => 'Code à 6 chiffres',
+    'change_mail'       => 'Changer d\'email',
+    'code_exp_desc'       => 'Ce code expire dans 10 minutes',
+    'save_and_calculate'       => 'Enregistrer & calculer les points',
     'points_unit'           => 'pts',
     'group'   => 'Groupe',
     'noplayer'         => 'Aucun joueur pour l\'instant.',

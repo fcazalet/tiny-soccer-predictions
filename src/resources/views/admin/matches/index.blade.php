@@ -19,6 +19,7 @@
                 <div class="flex items-center justify-between px-5 py-4 border-b border-gray-100 last:border-0">
                     <div class="flex items-center gap-3 flex-1">
                         <span class="text-sm text-gray-500 w-32">{{ $match->played_at->format('d/m/Y H:i') }}</span>
+                        <img src="/flags/4x3/{{ strtolower($match->homeTeam->name) }}.svg" width="24">
                         <span class="font-semibold text-gray-800">
                             {{ $match->homeTeam->displayName() }}
                         </span>
@@ -29,9 +30,11 @@
                         @else
                             <span class="text-gray-300 font-bold px-3">VS</span>
                         @endif
+                        <img src="/flags/4x3/{{ strtolower($match->awayTeam->name) }}.svg" width="24">
                         <span class="font-semibold text-gray-800">
                             {{ $match->awayTeam->displayName() }}
                         </span>
+                        
                     </div>
                     <a href="{{ route('admin.matches.score', $match) }}"
                        class="text-sm text-green-600 hover:underline ml-4">

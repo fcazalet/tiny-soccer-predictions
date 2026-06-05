@@ -19,7 +19,7 @@ class WorldCup2026Seeder extends Seeder
     public function run(): void
     {
         // Admin
-        User::create([
+        User::firstOrCreate([
             'name'  => 'Admin',
             'email' => 'admin@tinysp.local',
             'role'  => 'admin',

@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', __('app.dashboard'))
+@section('title', __('app.new_match'))
 
 @section('content')
 
@@ -66,7 +66,7 @@
                     {{ __('app.create_match')}}
                 </button>
                 <a href="{{ route('admin.matches.index') }}" class="text-gray-500 hover:underline px-4 py-2 text-sm">
-                    Annuler
+                    {{__('app.cancel')}}
                 </a>
             </div>
         </form>

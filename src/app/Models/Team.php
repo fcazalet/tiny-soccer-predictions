@@ -33,8 +33,9 @@ class Team extends Model
     public function displayName(): string
     {
         $name = __('countries.' . $this->name);
-        return $this->flag_emoji
-            ? "{$this->flag_emoji} {$name}"
-            : $name;
+        return $name;
+        // return $this->flag_emoji
+        //     ? "{$this->flag_emoji} {$name}"
+        //     : $name;
     }
 }

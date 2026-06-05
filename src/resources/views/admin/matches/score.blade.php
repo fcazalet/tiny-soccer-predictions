@@ -1,17 +1,19 @@
 @extends('layouts.app')
-@section('title', 'Saisir le score')
+@section('title', __('app.set_score'))
 
 @section('content')
 
 <div class="max-w-md mx-auto">
-    <h1 class="text-2xl font-bold text-gray-800 mb-6">🎯 Saisir le score</h1>
+    <h1 class="text-2xl font-bold text-gray-800 mb-6">🎯 {{ __('app.set_score') }}</h1>
 
     <div class="bg-white rounded-2xl shadow p-6">
         <div class="text-center mb-6">
             <p class="text-sm text-gray-400 mb-3">{{ $match->phaseLabel() }} · {{ $match->played_at->format('d/m/Y H:i') }}</p>
             <div class="flex items-center justify-center gap-4 text-lg font-bold text-gray-800">
+                <img src="/flags/4x3/{{ strtolower($match->homeTeam->name) }}.svg" width="24" class="inline-block">
                 <span>{{ $match->homeTeam->displayName() }}</span>
                 <span class="text-gray-300">VS</span>
+                <img src="/flags/4x3/{{ strtolower($match->awayTeam->name) }}.svg" width="24" class="inline-block">
                 <span>{{ $match->awayTeam->displayName() }}</span>
             </div>
         </div>
@@ -41,11 +43,11 @@
 
             <div class="flex gap-3">
                 <button type="submit" class="flex-1 bg-green-500 hover:bg-green-600 text-white font-semibold py-2 rounded-lg transition">
-                    Enregistrer & calculer les points
+                    {{ __('app.save_and_calculate') }}
                 </button>
             </div>
             <div class="text-center mt-3">
-                <a href="{{ route('admin.matches.index') }}" class="text-sm text-gray-400 hover:underline">Annuler</a>
+                <a href="{{ route('admin.matches.index') }}" class="text-sm text-gray-400 hover:underline">{{ __('app.cancel') }}</a>
             </div>
         </form>
     </div>

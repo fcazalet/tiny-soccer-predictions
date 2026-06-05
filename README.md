@@ -2,6 +2,8 @@
 
 Lightweight PHP web app for creating soccer prediction competitions between small groups of friends or colleagues. Authentication with email address and one-time-password (OTP).
 
+Languages : EN / FR
+
 ## Stack
 
 - **Laravel 11** (PHP 8.3)
@@ -46,6 +48,44 @@ chmod +x setup.sh
 docker compose exec app php artisan db:seed --class=WorldCup2026Seeder
 ```
 
+---
+
+## 🌐 Accès
+
+| Service | URL |
+|---|---|
+| Application | http://localhost:8080 |
+| Mailpit (emails) | http://localhost:8025 |
+
+Admin email default test : admin@tinysp.local
+Use mailpit for testing mailing.
+
+---
+
+## Configuration / Customization
+
+### Configure SMTP
+
+To use a real SMTP server, please change theses variables in .env file.
+
+Example with Gmail account:
+
+```conf
+MAIL_MAILER=smtp
+MAIL_HOST=smtp.gmail.com
+MAIL_PORT=587
+MAIL_ENCRYPTION=tls
+MAIL_USERNAME=your-email@gmail.com
+MAIL_PASSWORD=your-app-password
+MAIL_FROM_ADDRESS=your-email@gmail.com
+```
+
+After changing .env file run :
+
+```bash
+docker compose exec app php artisan optimize:clear
+```
+
 ### Change language
 
 Default language is english.
@@ -63,15 +103,6 @@ docker compose exec app php artisan optimize:clear
 ```
 
 Now language is french.
-
----
-
-## 🌐 Accès
-
-| Service | URL |
-|---|---|
-| Application | http://localhost:8080 |
-| Mailpit (emails) | http://localhost:8025 |
 
 ---
 
