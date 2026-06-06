@@ -44,7 +44,7 @@
         <div class="bg-white rounded-2xl shadow p-5 mb-4">
             <div class="flex items-center justify-between mb-3">
                 <span class="text-xs text-gray-400 uppercase tracking-wide">
-                    {{ $match->phaseLabel() }} · {{ $match->played_at->format('d/m/Y H:i') }}
+                    {{ $match->phaseLabel() }} · {{ $match->getLocalPlayedAt()->format('d/m/Y H:i') }}
                 </span>
                 @if($userPredictions->has($match->id))
                     <span class="text-xs bg-green-100 text-green-700 px-2 py-1 rounded-full">✓ {{ __('app.prediction_registered') }}</span>

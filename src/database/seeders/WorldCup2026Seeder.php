@@ -18,13 +18,6 @@ class WorldCup2026Seeder extends Seeder
      */
     public function run(): void
     {
-        // Admin
-        User::firstOrCreate([
-            'name'  => 'Admin',
-            'email' => 'admin@tinysp.local',
-            'role'  => 'admin',
-        ]);
-
         // Groupes et équipes Coupe du Monde 2026
         $groups = [
             'A' => [['MX', '🇲🇽'], ['ZA', '🇿🇦'], ['KR', '🇰🇷'], ['CZ', '🇨🇿']],
@@ -238,8 +231,7 @@ class WorldCup2026Seeder extends Seeder
             // Ramène en UTC puis ajoute +2h pour Paris (CEST)
             $playedAt = \Carbon\Carbon::parse($match['date'])
                 ->setTime($h, $m)
-                ->subHours($offset)   // -> UTC
-                ->addHours(2);        // -> Europe/Paris (CEST, UTC+2)
+                ->subHours($offset);   // -> UTC
 
             Fixture::create([
                 'home_team_id' => $homeTeam->id,

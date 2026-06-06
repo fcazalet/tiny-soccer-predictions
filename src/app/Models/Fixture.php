@@ -2,10 +2,11 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Casts\Attribute;
+use Carbon\Carbon;
 
 class Fixture extends Model
 {
@@ -22,6 +23,11 @@ class Fixture extends Model
         'home_score' => 'integer',
         'away_score' => 'integer',
     ];
+
+    public function getLocalPlayedAt(): Carbon
+    {
+        return $this->played_at->setTimezone(config('app.display_timezone'));
+    }
 
     // Relations
     public function homeTeam(): BelongsTo

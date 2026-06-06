@@ -47,7 +47,7 @@
             </div>
 
             <div>
-                <label class="block text-sm font-medium text-gray-700 mb-1">{{ __('app.date_hour')}}</label>
+                <label class="block text-sm font-medium text-gray-700 mb-1">{{ __('app.date_hour')}} (UTC+0)</label>
                 <input type="datetime-local" name="played_at" required
                     value="{{ old('played_at') }}"
                     class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-green-400" />

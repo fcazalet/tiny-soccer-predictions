@@ -42,7 +42,15 @@ chmod +x setup.sh
 ./setup.sh
 ```
 
-### 5. Initialize DB on Worldcup2026
+### 5. Initialize DB
+
+Initialize DB with default admin : admin@tinysp.local
+
+```bash
+docker compose exec app php artisan db:seed --class=AdminSeeder
+```
+
+### 6. Initialize WorldCup 2026
 
 ```bash
 docker compose exec app php artisan db:seed --class=WorldCup2026Seeder
@@ -157,3 +165,9 @@ Running Docker Compose on IDLE (CORE i3-3110 2.40GHz, RAM 4Go):
  * PHP-FPM : CPU 0.01%, MEM ~40MB
  * MARIADB : CPU 0.02%, MEM ~20MB
  * MAILPIT (optional on production) : CPU <0.01%, MEM ~40MB
+
+---
+
+ ## Credits
+
+Flags SVG assets used in this project are derived from [flag-icons](https://github.com/lipis/flag-icons) licensed under the MIT License.
