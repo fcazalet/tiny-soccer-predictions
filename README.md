@@ -94,7 +94,15 @@ After changing .env file run :
 docker compose exec app php artisan optimize:clear
 ```
 
-### Change language
+### Change Timezone
+
+Example for Paris timezone:
+
+```conf
+APP_DISPLAY_TIMEZONE=Europe/Paris
+```
+
+### Change Language
 
 Default language is english.
 
