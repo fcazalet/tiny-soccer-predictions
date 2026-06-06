@@ -53,12 +53,12 @@
 
             <div class="flex items-center gap-4 mb-4">
                 <div class="flex-1 text-right font-semibold text-gray-800">
-                    <img src="/flags/4x3/{{ strtolower($match->homeTeam->name) }}.svg" width="24" class="inline-block">
+                    <img src="/images/flags/4x3/{{ strtolower($match->homeTeam->name) }}.svg" width="24" class="inline-block">
                     <span>{{ $match->homeTeam->displayName() }}</span>
                 </div>
                 <span class="text-gray-400 font-bold">VS</span>
                 <div class="flex-1 font-semibold text-gray-800">
-                    <img src="/flags/4x3/{{ strtolower($match->awayTeam->name) }}.svg" width="24" class="inline-block">
+                    <img src="/images/flags/4x3/{{ strtolower($match->awayTeam->name) }}.svg" width="24" class="inline-block">
                     <span>{{ $match->awayTeam->displayName() }}</span>
                 </div>
             </div>
@@ -101,14 +101,14 @@
             <div class="flex items-center justify-between px-5 py-4 border-b border-gray-100 last:border-0">
                 <div class="flex items-center gap-3 flex-1">
                     <span class="text-sm font-semibold text-gray-700 text-right flex-1">
-                        <img src="/flags/4x3/{{ strtolower($match->homeTeam->name) }}.svg" width="24" class="inline-block">
+                        <img src="/images/flags/4x3/{{ strtolower($match->homeTeam->name) }}.svg" width="24" class="inline-block">
                         {{ $match->homeTeam->displayName() }}
                     </span>
                     <span class="bg-gray-800 text-white text-sm font-bold px-3 py-1 rounded-lg">
                         {{ $match->home_score }} – {{ $match->away_score }}
                     </span>
                     <span class="text-sm font-semibold text-gray-700 flex-1">
-                        <img src="/flags/4x3/{{ strtolower($match->awayTeam->name) }}.svg" width="24" class="inline-block">
+                        <img src="/images/flags/4x3/{{ strtolower($match->awayTeam->name) }}.svg" width="24" class="inline-block">
                         {{ $match->awayTeam->displayName() }}
                     </span>
                 </div>

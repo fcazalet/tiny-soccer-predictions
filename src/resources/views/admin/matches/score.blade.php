@@ -10,10 +10,10 @@
         <div class="text-center mb-6">
             <p class="text-sm text-gray-400 mb-3">{{ $match->phaseLabel() }} · {{ $match->played_at->format('d/m/Y H:i') }}</p>
             <div class="flex items-center justify-center gap-4 text-lg font-bold text-gray-800">
-                <img src="/flags/4x3/{{ strtolower($match->homeTeam->name) }}.svg" width="24" class="inline-block">
+                <img src="/images/flags/4x3/{{ strtolower($match->homeTeam->name) }}.svg" width="24" class="inline-block">
                 <span>{{ $match->homeTeam->displayName() }}</span>
                 <span class="text-gray-300">VS</span>
-                <img src="/flags/4x3/{{ strtolower($match->awayTeam->name) }}.svg" width="24" class="inline-block">
+                <img src="/images/flags/4x3/{{ strtolower($match->awayTeam->name) }}.svg" width="24" class="inline-block">
                 <span>{{ $match->awayTeam->displayName() }}</span>
             </div>
         </div>
