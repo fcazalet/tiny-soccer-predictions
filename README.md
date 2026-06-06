@@ -96,7 +96,7 @@ docker compose exec app php artisan optimize:clear
 
 ### Change Timezone
 
-Example for Paris timezone:
+Example for Paris timezone (only display):
 
 ```conf
 APP_DISPLAY_TIMEZONE=Europe/Paris
