@@ -31,6 +31,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/', fn() => redirect()->route('dashboard'));
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::post('/predictions/{match}', [PredictionController::class, 'store'])->name('predictions.store');
+    Route::post('/predictions/{match}/json', [PredictionController::class, 'storeJson'])->name('predictions.store.json');
 });
 
 // Administration

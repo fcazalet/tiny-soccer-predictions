@@ -28,6 +28,8 @@ return [
     'noresult'          => 'Aucun résultat pour l\'instant.',
     'noprediction'      => 'Pas de pronostic',
     'prediction_registered' => 'Pronostic enregistré',
+    'prediction_error' => 'Pronostic non enregistré',
+    'prediction_wait' => 'En cours',
     'player'         => 'Joueur',
     'points'         => 'Points',
 

@@ -28,6 +28,8 @@ return [
     'noresult' => 'No results at the moment.',
     'noprediction' => 'No prediction',
     'prediction_registered' => 'Prediction saved',
+    'prediction_error' => 'Pronostic not saved',
+    'prediction_wait' => 'Waiting',
     'player'   => 'Player',
     'points'   => 'Points',
 
