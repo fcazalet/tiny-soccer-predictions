@@ -104,9 +104,7 @@
                 e.preventDefault();
 
                 const status = this.querySelector('.score-status');
-                status.textContent = '{{ __('
-                app.prediction_wait
-                ') }}...';
+                status.textContent = "{{ __('app.prediction_wait') }}...";
 
                 // Traitement du formulaire courant
                 const formData = new FormData(this);
@@ -128,13 +126,9 @@
                     .then(data => {
                         status.style.display = 'block';
                         if (data.success) {
-                            status.textContent = '✓ {{ __('
-                            app.prediction_registered
-                            ') }}';
+                            status.textContent = "✓ {{ __('app.prediction_registered') }}";
                         } else {
-                            status.textContent = '❌ {{ __('
-                            app.prediction_error
-                            ') }}';
+                            status.textContent = "❌ {{ __('app.prediction_error') }}";
                         }
                     });
             });
