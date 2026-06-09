@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
@@ -13,6 +12,7 @@ class Prediction extends Model
     protected $fillable = [
         'user_id', 'fixture_id',
         'home_score', 'away_score',
+        'predicted_winner', // 'home' | 'away' | null — mandatory on knockout phases
         'points_earned',
     ];
 
@@ -42,5 +42,24 @@ class Prediction extends Model
     public function scoreLabel(): string
     {
         return "{$this->home_score} – {$this->away_score}";
+    }
+
+    /**
+     * Libellé complet du pronostic (score + vainqueur si phase éliminatoire).
+     */
+    public function fullLabel(): string
+    {
+        $label = $this->scoreLabel();
+
+        if ($this->predicted_winner !== null) {
+            // On résout le nom de l'équipe via la relation du match
+            $team = $this->predicted_winner === 'home'
+                ? $this->match->homeTeam->displayName()
+                : $this->match->awayTeam->displayName();
+
+            $label .= " · {$team}";
+        }
+
+        return $label;
     }
 }

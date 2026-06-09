@@ -28,8 +28,8 @@ class MatchController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            'home_team_id' => 'required|uuid|exists:teams,id',
-            'away_team_id' => 'required|uuid|exists:teams,id|different:home_team_id',
+            'home_team_id' => 'required|integer|exists:teams,id',
+            'away_team_id' => 'required|integer|exists:teams,id|different:home_team_id',
             'phase'        => 'required|in:group,r16,qf,sf,final',
             'played_at'    => 'required|date',
         ]);
@@ -48,10 +48,24 @@ class MatchController extends Controller
 
     public function updateScore(Request $request, Fixture $match)
     {
-        $data = $request->validate([
-            'home_score' => 'required|integer|min:0|max:20',
-            'away_score' => 'required|integer|min:0|max:20',
-        ]);
+        try{
+        if ($match->isKnockout()){
+            $data = $request->validate([
+                'home_score' => 'required|integer|min:0|max:20',
+                'away_score' => 'required|integer|min:0|max:20',
+                'winner' => 'required|in:home,away',
+            ]);
+        } else {
+            $data = $request->validate([
+                'home_score' => 'required|integer|min:0|max:20',
+                'away_score' => 'required|integer|min:0|max:20',
+            ]);
+        }
+        }
+        catch (\Exception $e){
+            var_dump($e->getMessage());
+            die();
+        }
 
         $match->update($data);
 

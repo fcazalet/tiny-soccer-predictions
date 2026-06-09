@@ -34,10 +34,18 @@ class PredictionController extends Controller
             return back()->with('error', 'Les pronostics sont fermés pour ce match.');
         }
 
-        $validator = Validator::make($request->all(), [
-            'home_score' => 'required|integer|min:0|max:20',
-            'away_score' => 'required|integer|min:0|max:20',
-        ]);
+        if ($match->isKnockout()){
+            $validator = Validator::make($request->all(), [
+                'home_score' => 'required|integer|min:0|max:20',
+                'away_score' => 'required|integer|min:0|max:20',
+                'predicted_winner' => 'required|in:home,away',
+            ]);
+        } else {
+            $validator = Validator::make($request->all(), [
+                'home_score' => 'required|integer|min:0|max:20',
+                'away_score' => 'required|integer|min:0|max:20',
+            ]);
+        }
 
         if ($validator->fails()) {
             return response()->json([

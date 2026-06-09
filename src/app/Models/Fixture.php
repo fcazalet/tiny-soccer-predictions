@@ -5,17 +5,19 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Casts\Attribute;
 use Carbon\Carbon;
 
 class Fixture extends Model
 {
-//    use HasUuids;
+
+    // Knockout stages where the winner must be specified separately from the score.
+    const KNOCKOUT_PHASES = ['r16', 'qf', 'sf', 'final'];
 
     protected $fillable = [
         'home_team_id', 'away_team_id',
         'phase', 'played_at',
         'home_score', 'away_score',
+        'winner', // Actual winner (may differ from the score due to extra time or a penalty shootout).
     ];
 
     protected $casts = [
@@ -46,9 +48,24 @@ class Fixture extends Model
     }
 
     // State helpers
+    public function isKnockout(): bool
+    {
+        return in_array($this->phase, self::KNOCKOUT_PHASES);
+    }
+
     public function isFinished(): bool
     {
-        return $this->home_score !== null && $this->away_score !== null;
+        if (! ($this->home_score !== null && $this->away_score !== null)) {
+            return false;
+        }
+
+        // In knockout stages, a match is considered "completed" (eligible for scoring)
+        // only when the actual winner has also been specified.
+        if ($this->isKnockout()) {
+            return $this->winner !== null;
+        }
+
+        return true;
     }
 
     public function isLocked(): bool
@@ -57,9 +74,15 @@ class Fixture extends Model
         return now()->gte($this->played_at->subMinutes(5));
     }
 
-    public function winner(): ?string
+    /**
+     * Winner based on the 90-minute score (used for group-stage matches).
+     * For knockout stages, use $this->winner (entered manually).
+     */
+    public function winnerByScore(): ?string
     {
-        if (! $this->isFinished()) return null;
+        if ($this->home_score === null || $this->away_score === null) {
+            return null;
+        }
 
         return match(true) {
             $this->home_score > $this->away_score => 'home',
@@ -68,35 +91,74 @@ class Fixture extends Model
         };
     }
 
-    // Calcul des points pour un pronostic donné
-    // Règle : 3 pts score exact / 2 pts bon vainqueur + bonne diff / 1 pt bon vainqueur / 0 sinon
-    public function computePoints(int $predictedHome, int $predictedAway): int
-    {
-        if (! $this->isFinished()) return 0;
+    // -----------------------------------------------------------------------
+    // Points
+    // -----------------------------------------------------------------------
 
+    /**
+     * Calculates the points for a given prediction.
+     *
+     * Common rules (all stages, based on 90-minute score):
+     *   3 pts : exact score
+     *   2 pts : correct result (winner or draw) + correct goal difference
+     *   1 pt  : correct result (winner or draw)
+     *   0 pt  : wrong result
+     *
+     * Knockout bonus (round of 16, quarter-finals, semi-finals, final):
+     *   +1 pt if correct qualified team (predicted_winner === $this->winner)
+     *   The actual qualified team may differ from the 90-minute result (extra time/penalties).
+     */
+    public function computePoints(int $predictedHome, int $predictedAway, ?string $predictedWinner = null): int
+    {
+        if (! $this->isFinished()) {
+            return 0;
+        }
+
+        $points = $this->computeScorePoints($predictedHome, $predictedAway);
+
+        // Bonus qualifié en phase éliminatoire
+        if ($this->isKnockout() && $predictedWinner !== null && $predictedWinner === $this->winner) {
+            $points += 1;
+        }
+
+        return $points;
+    }
+
+    /**
+     * Points liés au score à 90 min — identiques en toutes phases.
+     */
+    private function computeScorePoints(int $predictedHome, int $predictedAway): int
+    {
         // Score exact
         if ($predictedHome === $this->home_score && $predictedAway === $this->away_score) {
             return 3;
         }
 
-        $predictedWinner = match(true) {
+        $predictedResult = match(true) {
             $predictedHome > $predictedAway => 'home',
             $predictedAway > $predictedHome => 'away',
             default                         => 'draw',
         };
 
-        if ($predictedWinner !== $this->winner()) {
+        // Right result
+        if ($predictedResult !== $this->winnerByScore()) {
             return 0;
         }
 
-        // Bon vainqueur + bonne différence de buts
+        // Right result + right goals diff
         $predictedDiff = $predictedHome - $predictedAway;
         $actualDiff    = $this->home_score - $this->away_score;
 
         return $predictedDiff === $actualDiff ? 2 : 1;
     }
 
-    // Recalcule et sauvegarde les points de tous les pronostics de ce match
+    // -----------------------------------------------------------------------
+    // Bulk scoring
+    // -----------------------------------------------------------------------
+
+    /**
+     * Recalculates and saves the points for all predictions of this match.
+     */
     public function scoreAllPredictions(): void
     {
         $this->predictions->each(function (Prediction $prediction) {
@@ -104,14 +166,18 @@ class Fixture extends Model
                 'points_earned' => $this->computePoints(
                     $prediction->home_score,
                     $prediction->away_score,
+                    $prediction->predicted_winner,
                 ),
             ]);
         });
     }
 
+    // -----------------------------------------------------------------------
+    // Labels
+    // -----------------------------------------------------------------------
+
     public function phaseLabel(): string
     {
-        $label = __('app.phase_' . $this->phase);
-        return $label;
+        return __('app.phase_' . $this->phase);
     }
 }
