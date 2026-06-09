@@ -11,12 +11,12 @@
     </a>
 </div>
 
-@foreach(['group', 'r16', 'qf', 'sf', 'final'] as $phase)
+@foreach(['group', 'r32', 'r16', 'qf', 'sf', 'final'] as $phase)
 @if($matches->has($phase))
 <h2 class="text-lg font-semibold text-gray-600 mt-6 mb-3">{{ __('app.phase_'.$phase)}}</h2>
 <div class="bg-white rounded-2xl shadow overflow-hidden mb-4">
     @foreach($matches[$phase] as $match)
-    @php $isKnockout = in_array($match->phase, ['r16', 'qf', 'sf', 'final']); @endphp
+    @php $isKnockout = in_array($match->phase, ['r32', 'r16', 'qf', 'sf', 'final']); @endphp
     <div class="flex items-center justify-between px-5 py-4 border-b border-gray-100 last:border-0">
         <div class="flex items-center gap-3 flex-1">
             <span class="text-sm text-gray-500 w-32">{{ $match->played_at->format('d/m/Y H:i (P)') }}</span>

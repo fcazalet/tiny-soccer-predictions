@@ -30,7 +30,7 @@ class MatchController extends Controller
         $data = $request->validate([
             'home_team_id' => 'required|integer|exists:teams,id',
             'away_team_id' => 'required|integer|exists:teams,id|different:home_team_id',
-            'phase'        => 'required|in:group,r16,qf,sf,final',
+            'phase'        => 'required|in:group,r32,r16,qf,sf,final',
             'played_at'    => 'required|date',
         ]);
 

@@ -39,6 +39,7 @@
                 <label class="block text-sm font-medium text-gray-700 mb-1">{{__('app.phase')}}</label>
                 <select name="phase" required class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-green-400">
                     <option value="group">{{__('app.phase_group')}}</option>
+                    <option value="r32">{{__('app.phase_r32')}}</option>
                     <option value="r16">{{__('app.phase_r16')}}</option>
                     <option value="qf">{{__('app.phase_qf')}}</option>
                     <option value="sf">{{__('app.phase_sf')}}</option>

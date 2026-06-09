@@ -32,6 +32,7 @@ return [
     'prediction_wait' => 'En cours',
     'player'         => 'Joueur',
     'points'         => 'Points',
+    'who_advances'  => 'Equipe qualifiée',
 
     // ADMIN
     'manage_matches'  => 'Gestion des matchs',
@@ -43,6 +44,7 @@ return [
     'team_choice' => 'Choisir',
     'phase' => 'Phase',
     'phase_group' => 'Phase de groupes',
+    'phase_r32' => 'Seizièmes de finale',
     'phase_r16' => 'Huitièmes de finale',
     'phase_qf' => 'Quarts de finale',
     'phase_sf' => 'Demi-finales',

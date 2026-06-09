@@ -32,6 +32,7 @@ return [
     'prediction_wait' => 'Waiting',
     'player'   => 'Player',
     'points'   => 'Points',
+    'who_advances'  => 'Qualified team',
 
     // ADMIN
     'manage_matches'  => 'Manage matches',
@@ -43,6 +44,7 @@ return [
     'team_choice'     => 'Choose',
     'phase'           => 'Phase',
     'phase_group'     => 'Group stage',
+    'phase_r32'       => 'Round of 32',
     'phase_r16'       => 'Round of 16',
     'phase_qf'        => 'Quarter-finals',
     'phase_sf'        => 'Semi-finals',

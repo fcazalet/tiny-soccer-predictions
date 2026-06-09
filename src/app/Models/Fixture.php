@@ -11,7 +11,7 @@ class Fixture extends Model
 {
 
     // Knockout stages where the winner must be specified separately from the score.
-    const KNOCKOUT_PHASES = ['r16', 'qf', 'sf', 'final'];
+    const KNOCKOUT_PHASES = ['r32', 'r16', 'qf', 'sf', 'final'];
 
     protected $fillable = [
         'home_team_id', 'away_team_id',
