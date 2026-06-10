@@ -12,6 +12,7 @@
             <tr>
                 <th class="px-4 py-3 text-left">#</th>
                 <th class="px-4 py-3 text-left">{{ __('app.player') }}</th>
+                <th class="px-4 py-3 text-right">{{ __('app.predictions') }}</th>
                 <th class="px-4 py-3 text-right">{{ __('app.points') }}</th>
             </tr>
             </thead>
@@ -25,13 +26,16 @@
                     <span class="text-green-600 text-xs ml-1">(vous)</span>
                     @endif
                 </td>
+                <td class="px-4 py-3 text-right text-gray-500">
+                    {{ $player->predictions_count ?? 0 }} / {{ $totalFixturesCount }}
+                </td>
                 <td class="px-4 py-3 text-right font-bold text-green-700">
                     {{ $player->predictions_sum_points_earned ?? 0 }} pts
                 </td>
             </tr>
             @empty
             <tr>
-                <td colspan="3" class="px-4 py-4 text-center text-gray-400">{{ __('app.noplayer') }}</td>
+                <td colspan="4" class="px-4 py-4 text-center text-gray-400">{{ __('app.noplayer') }}</td>
             </tr>
             @endforelse
             </tbody>
@@ -39,9 +43,16 @@
     </div>
 </div>
 
-{{-- Matchs à pronostiquer --}}
+{{-- Fixtures to predict --}}
 <div class="mb-8">
-    <h2 class="text-xl font-bold text-gray-800 mb-4">📋 {{ __('app.upcoming_matches') }}</h2>
+    <div class="flex items-center justify-between mb-4">
+        <h2 class="text-xl font-bold text-gray-800">📋 {{ __('app.upcoming_matches') }}</h2>
+        <span class="text-sm font-medium text-gray-500">
+            <span class="font-bold text-green-600">{{ $userPredictions->count() }}</span>
+            <span class="text-gray-400">/</span>
+            {{ $upcomingMatches->count() }} {{ __('app.predicted') }}
+        </span>
+    </div>
     @forelse($upcomingMatches as $match)
     @php $existingPrediction = $userPredictions->get($match->id); @endphp
     <div class="bg-white rounded-2xl shadow p-5 mb-4">

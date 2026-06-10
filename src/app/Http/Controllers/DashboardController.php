@@ -31,6 +31,7 @@ class DashboardController extends Controller
         // Classement
         $leaderboard = User::where('role', 'player')
             ->withSum('predictions', 'points_earned')
+            ->withCount('predictions')
             ->orderByDesc('predictions_sum_points_earned')
             ->get();
 
@@ -40,11 +41,20 @@ class DashboardController extends Controller
             ->get()
             ->keyBy('fixture_id');
 
+        // Total fixtures count
+        $totalFixturesCount = Fixture::count();
+
+        //
+        $userUpcomingPredictionsCount = $upcomingMatches
+            ->filter(fn($match) => $userPredictions->has($match->id))
+            ->count();
+
         return view('dashboard', compact(
             'upcomingMatches',
             'finishedMatches',
             'leaderboard',
-            'userPredictions'
+            'userPredictions',
+            'totalFixturesCount'
         ));
     }
 }

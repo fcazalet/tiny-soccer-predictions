@@ -31,8 +31,10 @@ return [
     'prediction_error' => 'Pronostic non enregistré',
     'prediction_wait' => 'En cours',
     'player'         => 'Joueur',
+    'predictions' => 'Pronostics',
     'points'         => 'Points',
     'who_advances'  => 'Equipe qualifiée',
+    'predicted'  => 'pronostiqués',
 
     // ADMIN
     'manage_matches'  => 'Gestion des matchs',

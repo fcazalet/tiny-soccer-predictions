@@ -31,8 +31,10 @@ return [
     'prediction_error' => 'Pronostic not saved',
     'prediction_wait' => 'Waiting',
     'player'   => 'Player',
+    'predictions' => 'Predictions',
     'points'   => 'Points',
     'who_advances'  => 'Qualified team',
+    'predicted'  => 'predicted',
 
     // ADMIN
     'manage_matches'  => 'Manage matches',
