@@ -204,6 +204,11 @@
         @forelse($finishedMatches as $match)
         @php $prediction = $match->predictions->first(); @endphp
         <div class="flex items-center justify-between px-5 py-4 border-b border-gray-100 last:border-0">
+            <div class="flex items-center justify-between mb-3">
+                <span class="text-xs text-gray-400 uppercase tracking-wide">
+                    {{ $match->phaseLabel() }} · {{ $match->getLocalPlayedAt()->format('d/m/Y H:i') }}
+                </span>
+            </div>
             <div class="flex items-center gap-3 flex-1">
                 <span class="text-sm font-semibold text-gray-700 text-right flex-1">
                     <img src="/images/flags/4x3/{{ strtolower($match->homeTeam->name) }}.svg" width="24"
