@@ -8,13 +8,18 @@ Languages : EN / FR
 
 - **Laravel 11** (PHP 8.3)
 - **MariaDB 11**
-- **Mailpit** (SMTP local + interface web)
+- **Mailpit** (SMTP local + interface web) (for development)
 - **Nginx**
 - **Docker Compose**
 
 ---
 
-## 🚀 Install
+## 🚀 Installation (Production)
+
+👉 Production setup: [docs/production-install.md](docs/production-install.md)
+
+
+## Development
 
 ### 1. Prerequisites
 
@@ -38,8 +43,8 @@ docker compose exec app composer install
 Modify setup.sh to meet your needs then run :
 
 ```bash
-chmod +x setup.sh
-./setup.sh
+chmod +x setup-dev.sh
+./setup-dev.sh
 ```
 
 ### 5. Initialize DB
@@ -58,6 +63,8 @@ docker compose exec app php artisan db:seed --class=WorldCup2026Seeder
 
 ---
 
+## Development Setup
+
 ## 🌐 Accès
 
 | Service | URL |
@@ -67,75 +74,6 @@ docker compose exec app php artisan db:seed --class=WorldCup2026Seeder
 
 Admin email default test : admin@tinysp.local
 Use mailpit for testing mailing.
-
----
-
-## Configuration / Customization
-
-### Configure SMTP
-
-To use a real SMTP server, please change theses variables in .env file.
-
-Example with Gmail account:
-
-```conf
-MAIL_MAILER=smtp
-MAIL_HOST=smtp.gmail.com
-MAIL_PORT=587
-MAIL_ENCRYPTION=tls
-MAIL_USERNAME=your-email@gmail.com
-MAIL_PASSWORD=your-app-password
-MAIL_FROM_ADDRESS=your-email@gmail.com
-```
-
-After changing .env file run :
-
-```bash
-docker compose exec app php artisan optimize:clear
-```
-
-### Change Timezone
-
-Example for Paris timezone (only display):
-
-```conf
-APP_DISPLAY_TIMEZONE=Europe/Paris
-```
-
-### Change Language
-
-Default language is english.
-
-#### French 🇫🇷
-
-For French language, add this line in .env file:
-
-    APP_LOCALE=fr
-
-Then clear cache :
-
-```bash
-docker compose exec app php artisan optimize:clear
-```
-
-Now language is french.
-
----
-
-## 🌐 To production live !
-
-Change .env variables:
-
-```conf
-APP_DEBUG=false
-APP_URL=http://XX.XX.XX.XX:8080
-```
-
-Note: Database session seems to not work. Please use file mode for production:
-
-```conf
-SESSION_DRIVER=file
-```
 
 ---
 
