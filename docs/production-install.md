@@ -64,6 +64,17 @@ MAIL_ENCRYPTION=ssl
 MAIL_FROM_ADDRESS=mymail@gmail.com
 ```
 
+```bash
+echo "🔑 Génération de la clé app..."
+docker compose exec app php artisan key:generate
+
+echo "📦 Installation des dépendances front..."
+docker compose exec app bash -c "npm install && npm run build" 2>/dev/null || true
+
+echo "🗄️  Migration base de données..."
+docker compose exec app php artisan migrate
+```
+
 ### 3. Initialize Admin Account
 
 Default admin address is ``admin@tinysp.local``, change it with a real email address in the file ``src/database/seeders/AdminSeeder.php``.
