@@ -1,3 +1,14 @@
+<?php
+
+namespace App\Http\Controllers\Auth;
+
+use App\Http\Controllers\Controller;
+use App\Models\User;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
+class DemoLoginController extends Controller
+{
     public function show()
     {
         return view('auth.demo-login');
@@ -13,7 +24,11 @@
 
         $user = User::where('email', $email)->firstOrFail();
 
-        Auth::login($user);
+        Auth::login($user, remember: true);   // ← remember: true pour persister
+
+        $request->session()->regenerate();    // ← indispensable après un login manuel
+        $request->session()->save(); 
 
         return redirect()->intended('/dashboard');
     }
+}

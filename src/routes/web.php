@@ -5,18 +5,28 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PredictionController;
 use App\Http\Controllers\Admin\MatchController as AdminMatchController;
 use App\Http\Controllers\Auth\OtpController;
+use App\Http\Controllers\Auth\DemoLoginController;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
+// Demo Mode
+if (config('app.demo_mode')) {
+    Route::middleware('web')->group(function () {
+        Route::get('/login', [DemoLoginController::class, 'show'])->name('login');
+        Route::post('/login/demo', [DemoLoginController::class, 'loginAs'])->name('demo.login');
+    });
+}
 // Auth OTP
-Route::middleware('guest')->group(function () {
-    Route::get('/login', [OtpController::class, 'showEmailForm'])->name('login');
-    Route::post('/login/send', [OtpController::class, 'sendOtp'])->name('auth.otp.send');
-    Route::get('/login/verify', [OtpController::class, 'showOtpForm'])->name('auth.otp.form');
-    Route::post('/login/verify', [OtpController::class, 'verifyOtp'])->name('auth.otp.verify');
-});
+else {
+    Route::middleware('guest')->group(function () {
+        Route::get('/login', [OtpController::class, 'showEmailForm'])->name('login');
+        Route::post('/login/send', [OtpController::class, 'sendOtp'])->name('auth.otp.send');
+        Route::get('/login/verify', [OtpController::class, 'showOtpForm'])->name('auth.otp.form');
+        Route::post('/login/verify', [OtpController::class, 'verifyOtp'])->name('auth.otp.verify');
+    });
+}
 
 Route::post('/logout', [OtpController::class, 'logout'])->name('logout')->middleware('auth');
 

@@ -124,4 +124,16 @@ return [
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
 
+    /*
+    |--------------------------------------------------------------------------
+    | Demo Mode
+    |--------------------------------------------------------------------------
+    |
+    | Custom config for demo mode
+    |
+    */
+    'demo_mode' => env('DEMO_MODE', false),
+    'demo_admin_email' => env('DEMO_ADMIN_EMAIL', 'admin@demo.com'),
+    'demo_player_email' => env('DEMO_PLAYER_EMAIL', 'player1@demo.com'),
+
 ];
