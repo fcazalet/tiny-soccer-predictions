@@ -21,6 +21,7 @@ class ResultsController extends Controller
             ->whereIn('fixture_id', $allFixtures->pluck('id'))
             ->when($phase, fn($q) => $q->whereHas('fixture', fn($q) => $q->where('phase', $phase)))
             ->get()
+            ->sortByDesc(fn($p) => $p->fixture->played_at)
             ->keyBy('fixture_id');
 
         $totalFixturesCount = Fixture::count();
