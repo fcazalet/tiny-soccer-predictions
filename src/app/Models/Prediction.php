@@ -28,7 +28,7 @@ class Prediction extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function match(): BelongsTo
+    public function fixture(): BelongsTo
     {
         return $this->belongsTo(Fixture::class);
     }
@@ -54,8 +54,8 @@ class Prediction extends Model
         if ($this->predicted_winner !== null) {
             // On résout le nom de l'équipe via la relation du match
             $team = $this->predicted_winner === 'home'
-                ? $this->match->homeTeam->displayName()
-                : $this->match->awayTeam->displayName();
+                ? $this->fixture->homeTeam->displayName()
+                : $this->fixture->awayTeam->displayName();
 
             $label .= " · {$team}";
         }

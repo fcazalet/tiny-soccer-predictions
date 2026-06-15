@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ResultsController;
 use App\Http\Controllers\PredictionController;
 use App\Http\Controllers\Admin\MatchController as AdminMatchController;
 use App\Http\Controllers\Auth\OtpController;
@@ -20,11 +21,13 @@ Route::middleware('guest')->group(function () {
 
 Route::post('/logout', [OtpController::class, 'logout'])->name('logout')->middleware('auth');
 
-// Dashboard (protégé)
+// Dashboard (protected)
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware('auth')->name('dashboard');
 
+// Results (protected)
+Route::get('/predictions', [ResultsController::class, 'index'])->middleware('auth')->name('results.index');
 
 // Dashboard & pronostics (joueurs connectés)
 Route::middleware('auth')->group(function () {

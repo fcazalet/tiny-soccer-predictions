@@ -5,6 +5,9 @@ return [
     'upcoming_matches' => 'Matches to predict',
     'recent_results'   => 'Recent results',
     'your_prediction'  => 'Your prediction',
+    'home'             => 'Home',
+    'my_results'   => 'My results',
+    'results'             => 'Results',
     'save'             => 'Save',
     'edit'             => 'Edit',
     'logout'           => 'Logout',
@@ -35,6 +38,7 @@ return [
     'points'   => 'Points',
     'who_advances'  => 'Qualified team',
     'predicted'  => 'predicted',
+    'upcoming' => 'Upcoming',
 
     // ADMIN
     'manage_matches'  => 'Manage matches',
@@ -44,6 +48,7 @@ return [
     'local_team'      => 'Home team',
     'ext_team'        => 'Away team',
     'team_choice'     => 'Choose',
+    'all'             => 'All',
     'phase'           => 'Phase',
     'phase_group'     => 'Group stage',
     'phase_r32'       => 'Round of 32',

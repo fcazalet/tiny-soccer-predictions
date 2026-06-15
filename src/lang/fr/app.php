@@ -5,6 +5,9 @@ return [
     'upcoming_matches' => 'Matchs à pronostiquer',
     'recent_results'   => 'Résultats récents',
     'your_prediction'  => 'Votre pronostic',
+    'home'             => 'Accueil',
+    'my_results'   => 'Mes Résultats',
+    'results'             => 'Résultats',
     'save'             => 'Valider',
     'edit'             => 'Modifier',
     'logout'           => 'Déconnexion',
@@ -35,6 +38,7 @@ return [
     'points'         => 'Points',
     'who_advances'  => 'Equipe qualifiée',
     'predicted'  => 'pronostiqués',
+    'upcoming' => 'À venir',
 
     // ADMIN
     'manage_matches'  => 'Gestion des matchs',
@@ -44,6 +48,7 @@ return [
     'local_team'         => 'Équipe domicile',
     'ext_team'         => 'Équipe extérieur',
     'team_choice' => 'Choisir',
+    'all'             => 'Tout',
     'phase' => 'Phase',
     'phase_group' => 'Phase de groupes',
     'phase_r32' => 'Seizièmes de finale',
