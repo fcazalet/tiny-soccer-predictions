@@ -21,12 +21,12 @@
             <a href="{{ route('dashboard') }}" class="font-bold text-lg tracking-tight">⚽ {{ config('app.name') }}</a>
             <a href="{{ route('dashboard') }}"
                class="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold transition
-                  {{ request()->routeIs('dashboard') ? 'bg-green-500 text-white' : 'text-gray-100 hover:text-gray-600 hover:bg-gray-300' }}">
+                  {{ request()->routeIs('dashboard') ? 'bg-green-600 text-white' : 'bg-green-800 text-gray-100 hover:text-gray-600 hover:bg-gray-300' }}">
                 🏠 {{ __('app.home') }}
             </a>
             <a href="{{ route('results.index') }}"
                class="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold transition
-                  {{ request()->routeIs('results.*') ? 'bg-green-500 text-white' : 'text-gray-100 hover:text-gray-600 hover:bg-gray-300' }}">
+                  {{ request()->routeIs('results.*') ? 'bg-green-600 text-white' : 'bg-green-800 text-gray-100 hover:text-gray-600 hover:bg-gray-300' }}">
                 📋 {{ __('app.my_results') }}
             </a>
             <div class="flex items-center gap-4 text-sm">

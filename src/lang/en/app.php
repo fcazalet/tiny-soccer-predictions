@@ -58,4 +58,12 @@ return [
     'phase_final'     => 'Final',
     'date_hour'       => 'Date & time',
     'create_match'    => 'Create match',
+
+    // DEMO
+    'demo_choose_role' => 'Please choose a role',
+    'demo_admin' => 'Demo Admin',
+    'demo_admin_desc' => 'Demo administrator',
+    'demo_player' => 'Demo Player1',
+    'demo_player_desc' => 'Demo player',
+    'demo_no_password' => 'No password required for this demo',
 ];

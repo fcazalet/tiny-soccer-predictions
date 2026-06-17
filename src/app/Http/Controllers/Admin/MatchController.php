@@ -34,7 +34,9 @@ class MatchController extends Controller
             'played_at'    => 'required|date',
         ]);
 
-        Fixture::create($data);
+        if(!config('app.demo_mode')){
+            Fixture::create($data);
+        }
 
         return redirect()->route('admin.matches.index')
             ->with('success', 'Match créé.');

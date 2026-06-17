@@ -59,4 +59,11 @@ return [
     'date_hour' => 'Date & heure',
     'create_match' => 'Créer le match',
 
+    // DEMO
+    'demo_choose_role' => 'Veuillez choisir un rôle',
+    'demo_admin' => 'Demo Admin',
+    'demo_admin_desc' => 'Administrateur de démonstration',
+    'demo_player' => 'Demo Player1',
+    'demo_player_desc' => 'Joueur de démonstration',
+    'demo_no_password' => 'Aucun mot de passe requis pour cette démo',
 ];
