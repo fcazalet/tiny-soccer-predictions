@@ -4,6 +4,10 @@ Lightweight PHP self-hosted webapp for creating soccer prediction competitions b
 
 Languages : EN / FR
 
+## Live Demo
+
+Link : http://tinysp-demo.picmid.com/
+
 ## Stack
 
 - **Laravel 11** (PHP 8.3)
