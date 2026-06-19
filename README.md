@@ -8,8 +8,7 @@ Languages : EN / FR
 
 Link : http://tinysp-demo.picmid.com/
 
-<img alt="Screenshot of TinySP My Results view" src="/docs/images/scr_myresults.png" width="400">
-<img alt="Screenshot of TinySP Leaderboard view" src="/docs/images/scr_leaderboard.png" width="400">
+<img alt="Screenshot of TinySP My Results view" src="/docs/images/scr_myresults.png" width="400"><img alt="Screenshot of TinySP Leaderboard view" src="/docs/images/scr_leaderboard.png" width="400">
 
 ## Stack
 
