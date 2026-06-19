@@ -9,6 +9,7 @@ Languages : EN / FR
 Link : http://tinysp-demo.picmid.com/
 
 ![Screenshot of TinySP My Results view](/docs/images/Capture4.png)
+<img src="/docs/images/Capture4.png" width="48">
 
 ## Stack
 
