@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ResultsController;
 use App\Http\Controllers\PredictionController;
+use App\Http\Controllers\ReplayController;
 use App\Http\Controllers\Admin\MatchController as AdminMatchController;
 use App\Http\Controllers\Auth\OtpController;
 use App\Http\Controllers\Auth\DemoLoginController;
@@ -38,6 +39,9 @@ Route::get('/dashboard', function () {
 
 // Results (protected)
 Route::get('/predictions', [ResultsController::class, 'index'])->middleware('auth')->name('results.index');
+
+// Replay (protected)
+Route::get('/replay', [ReplayController::class, 'replay'])->name('replay');
 
 // Dashboard & pronostics (joueurs connectés)
 Route::middleware('auth')->group(function () {

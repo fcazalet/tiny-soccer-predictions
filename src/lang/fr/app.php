@@ -39,6 +39,14 @@ return [
     'who_advances'  => 'Equipe qualifiée',
     'predicted'  => 'pronostiqués',
     'upcoming' => 'À venir',
+    
+    // REPLAY
+    'replay'            => 'Replay',
+    'replay_title'      => 'Évolution du classement',
+    'replay_subtitle'   => 'Naviguez jour par jour pour voir comment le classement a évolué.',
+    'replay_vs_previous'=> 'Évolution vs. la veille',
+    'replay_first_day'  => 'Premier jour de compétition',
+    'trend'             => 'Tendance',
 
     // ADMIN
     'manage_matches'  => 'Gestion des matchs',
