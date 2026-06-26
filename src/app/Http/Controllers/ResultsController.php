@@ -11,7 +11,8 @@ class ResultsController extends Controller
         $user = auth()->user();
         $phase = request('phase');
 
-        $allFixtures = Fixture::whereHas('predictions', fn($q) => $q->where('user_id', $user->id))->get();
+        // $allFixtures = Fixture::whereHas('predictions', fn($q) => $q->where('user_id', $user->id))->get();
+        $allFixtures = Fixture::all()->sortBy('played_at');
         $phases = $allFixtures->map(fn($m) => $m->phase)->unique()->values();
 
         // sum of points_earned for the current user

@@ -39,6 +39,9 @@ return [
     'who_advances'  => 'Qualified team',
     'predicted'  => 'predicted',
     'upcoming' => 'Upcoming',
+    'started' => 'Started',
+    'ended' => 'Ended',
+    'replay'    => 'Replay',
 
     // REPLAY
     'replay'            => 'Replay',

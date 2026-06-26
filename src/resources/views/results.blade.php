@@ -42,26 +42,40 @@
 
 {{-- Predictions list --}}
 <div class="bg-white rounded-2xl shadow overflow-hidden">
-    @forelse($userPredictions as $prediction)
-    @php $match = $prediction->fixture; @endphp
+    @forelse($allFixtures as $fixture)
+    @php $prediction = $userPredictions->get($fixture->id) @endphp
     <div class="px-5 py-4 border-b border-gray-100 last:border-0">
 
         {{-- Phase & date --}}
         <div class="flex items-center justify-between mb-3">
             <span class="text-xs text-gray-400 uppercase tracking-wide">
-                {{ $match->phaseLabel() }} · {{ $match->getLocalPlayedAt()->format('d/m/Y H:i') }}
+                {{ $fixture->phaseLabel() }} · {{ $fixture->getLocalPlayedAt()->format('d/m/Y H:i') }}
             </span>
-            @if($match->home_score !== null)
+            @if($fixture->home_score !== null)
             {{-- Match finished: show points badge --}}
             <span class="text-xs font-semibold px-2 py-0.5 rounded-full
-                             {{ $prediction->points_earned > 0 ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-400' }}">
-                    +{{ $prediction->points_earned }} pt{{ $prediction->points_earned > 1 ? 's' : '' }}
-                </span>
+                             {{ $prediction && $prediction->points_earned > 0 ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-400' }}">
+                    +{{ $prediction ? $prediction->points_earned : 0 }} pt{{ $prediction && $prediction->points_earned > 1 ? 's' : '' }}
+            </span>
             @else
-            {{-- Match not yet played --}}
-            <span class="text-xs bg-blue-50 text-blue-400 px-2 py-0.5 rounded-full">
+                @if($fixture->played_at->isFuture())
+                {{-- Match not yet played --}}
+                <span class="text-xs bg-blue-50 text-blue-400 px-2 py-0.5 rounded-full">
                     {{ __('app.upcoming') }}
                 </span>
+                @else
+                    @if ($fixture->played_at->addHours(3)->isFuture())
+                        {{-- Match started --}}
+                        <span class="text-xs bg-green-50 text-green-400 px-2 py-0.5 rounded-full">
+                            {{ __('app.started') }}
+                        </span>
+                    @else
+                        {{-- Match ended --}}
+                        <span class="text-xs bg-red-50 text-red-400 px-2 py-0.5 rounded-full">
+                            {{ __('app.ended') }}
+                        </span>
+                    @endif
+                @endif
             @endif
         </div>
 
@@ -69,20 +83,20 @@
         <div class="flex items-center gap-3 mb-3">
             {{-- Home --}}
             <span class="text-sm font-semibold text-gray-700 text-right flex-1">
-                <img src="/images/flags/4x3/{{ strtolower($match->homeTeam->name) }}.svg" width="24"
+                <img src="/images/flags/4x3/{{ strtolower($fixture->homeTeam->name) }}.svg" width="24"
                      class="inline-block mr-1">
-                {{ $match->homeTeam->displayName() }}
+                {{ $fixture->homeTeam->displayName() }}
             </span>
 
             {{-- Actual score (if played) vs VS --}}
             <div class="text-center shrink-0">
-                @if($match->home_score !== null)
+                @if($fixture->home_score !== null)
                 <span class="bg-gray-800 text-white text-sm font-bold px-3 py-1 rounded-lg">
-                        {{ $match->home_score }} – {{ $match->away_score }}
+                        {{ $fixture->home_score }} – {{ $fixture->away_score }}
                     </span>
-                @if($match->isKnockout() && $match->winner)
+                @if($fixture->isKnockout() && $fixture->winner)
                 <div class="text-xs text-gray-400 mt-1">
-                    ➡️ {{ $match->winner === 'home' ? $match->homeTeam->displayName() : $match->awayTeam->displayName()
+                    ➡️ {{ $fixture->winner === 'home' ? $fixture->homeTeam->displayName() : $fixture->awayTeam->displayName()
                     }}
                 </div>
                 @endif
@@ -93,26 +107,32 @@
 
             {{-- Away --}}
             <span class="text-sm font-semibold text-gray-700 flex-1">
-                <img src="/images/flags/4x3/{{ strtolower($match->awayTeam->name) }}.svg" width="24"
+                <img src="/images/flags/4x3/{{ strtolower($fixture->awayTeam->name) }}.svg" width="24"
                      class="inline-block mr-1">
-                {{ $match->awayTeam->displayName() }}
+                {{ $fixture->awayTeam->displayName() }}
             </span>
         </div>
 
         {{-- User prediction --}}
-        <div class="pt-3 border-t border-gray-50 flex items-center justify-between">
+        <div class="pt-3 border-t border-gray-50 flex items-center justify-end gap-2">
             <span class="text-xs text-gray-400">{{ __('app.your_prediction') }} :</span>
+            @if($prediction)
             <div class="text-xs font-medium text-gray-600">
                 {{ $prediction->scoreLabel() }}
-                @if($match->isKnockout())
+                @if($fixture->isKnockout())
                 @if($prediction->predicted_winner)
-                · {{ $prediction->predicted_winner === 'home' ? $match->homeTeam->displayName() :
-                $match->awayTeam->displayName() }}
+                · {{ $prediction->predicted_winner === 'home' ? $fixture->homeTeam->displayName() :
+                $fixture->awayTeam->displayName() }}
                 @else
                 · <span class="text-orange-400">{{ __('app.no_winner_predicted') }}</span>
                 @endif
                 @endif
             </div>
+            @else
+            <div class="text-xs font-medium text-gray-600">
+                <span class="text-orange-400">{{ __('app.noprediction') }}</span>
+            </div>
+            @endif
         </div>
 
     </div>

@@ -39,6 +39,9 @@ return [
     'who_advances'  => 'Equipe qualifiée',
     'predicted'  => 'pronostiqués',
     'upcoming' => 'À venir',
+    'started' => 'Commencé',
+    'ended' => 'Terminé',
+    'replay'    => 'Replay',
     
     // REPLAY
     'replay'            => 'Replay',

@@ -18,26 +18,49 @@
 
     <nav class="bg-green-700 text-white shadow">
         <div class="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between">
+            {{-- Logo --}}
             <a href="{{ route('dashboard') }}" class="font-bold text-lg tracking-tight">⚽ {{ config('app.name') }}</a>
-            <a href="{{ route('dashboard') }}"
-               class="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold transition
-                  {{ request()->routeIs('dashboard') ? 'bg-green-600 text-white' : 'bg-green-800 text-gray-100 hover:text-gray-600 hover:bg-gray-300' }}">
-                🏠 {{ __('app.home') }}
-            </a>
-            <a href="{{ route('results.index') }}"
-               class="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold transition
-                  {{ request()->routeIs('results.*') ? 'bg-green-600 text-white' : 'bg-green-800 text-gray-100 hover:text-gray-600 hover:bg-gray-300' }}">
-                📋 {{ __('app.my_results') }}
-            </a>
-            <div class="flex items-center gap-4 text-sm">
+
+            {{-- Bouton hamburger (mobile uniquement) --}}
+            <button onclick="document.getElementById('nav-menu').classList.toggle('hidden')"
+                    class="md:hidden p-2 rounded hover:bg-green-600">
+                ☰
+            </button>
+
+            {{-- Menu --}}
+            <div id="nav-menu" class="hidden md:flex md:items-center md:gap-3 
+                                    absolute md:static top-14 left-0 right-0 
+                                    bg-green-700 md:bg-transparent 
+                                    flex-col md:flex-row 
+                                    p-4 md:p-0 z-50">
+
+                <a href="{{ route('dashboard') }}"
+                class="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold transition
+                        {{ request()->routeIs('dashboard') ? 'bg-green-600 text-white' : 'bg-green-800 text-gray-100 hover:text-gray-600 hover:bg-gray-300' }}">
+                    🏠 {{ __('app.home') }}
+                </a>
+                <a href="{{ route('results.index') }}"
+                class="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold transition
+                        {{ request()->routeIs('results.*') ? 'bg-green-600 text-white' : 'bg-green-800 text-gray-100 hover:text-gray-600 hover:bg-gray-300' }}">
+                    📋 {{ __('app.my_results') }}
+                </a>
+                <a href="{{ route('replay') }}"
+                class="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold transition
+                        {{ request()->routeIs('replay') ? 'bg-green-600 text-white' : 'bg-green-800 text-gray-100 hover:text-gray-600 hover:bg-gray-300' }}">
+                    ⏱️ {{ __('app.replay') }}
+                </a>
+
+                {{-- Séparateur visuel sur mobile --}}
+                <hr class="md:hidden border-green-600 my-1">
+
                 @auth
-                    <span class="opacity-75">{{ auth()->user()->name }}</span>
+                    <span class="opacity-75 text-sm px-4 md:px-0">{{ auth()->user()->name }}</span>
                     @if(auth()->user()->isAdmin())
-                        <a href="{{ route('admin.matches.index') }}" class="hover:underline">Admin</a>
+                        <a href="{{ route('admin.matches.index') }}" class="px-4 md:px-0 text-sm hover:underline">Admin</a>
                     @endif
-                    <form action="{{ route('logout') }}" method="POST">
+                    <form action="{{ route('logout') }}" method="POST" class="px-4 md:px-0">
                         @csrf
-                        <button type="submit" class="hover:underline">{{ __('app.logout') }}</button>
+                        <button type="submit" class="text-sm hover:underline">{{ __('app.logout') }}</button>
                     </form>
                 @endauth
             </div>
