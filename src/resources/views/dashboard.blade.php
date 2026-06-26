@@ -203,59 +203,67 @@
     <div class="bg-white rounded-2xl shadow overflow-hidden">
         @forelse($finishedMatches as $match)
         @php $prediction = $match->predictions->first(); @endphp
-        <div class="flex items-center justify-between px-5 py-4 border-b border-gray-100 last:border-0">
-            <div class="flex items-center justify-between mb-3">
-                <span class="text-xs text-gray-400 uppercase tracking-wide">
-                    {{ $match->phaseLabel() }} · {{ $match->getLocalPlayedAt()->format('d/m/Y H:i') }}
-                </span>
-            </div>
-            <div class="flex items-center gap-3 flex-1">
-                <span class="text-sm font-semibold text-gray-700 text-right flex-1">
-                    <img src="/images/flags/4x3/{{ strtolower($match->homeTeam->name) }}.svg" width="24"
-                         class="inline-block">
+
+        <div class="flex flex-col px-5 py-4 border-b border-gray-100 last:border-0 gap-2">
+
+            {{-- Ligne 1 : phase + date --}}
+            <span class="text-xs text-gray-400 uppercase tracking-wide">
+                {{ $match->phaseLabel() }} · {{ $match->getLocalPlayedAt()->format('d/m/Y H:i') }}
+            </span>
+
+            {{-- Ligne 2 : équipes + score --}}
+            <div class="flex items-center gap-2">
+                <span class="text-sm font-semibold text-gray-700 flex-1 flex items-center justify-end gap-1 text-right">
                     {{ $match->homeTeam->displayName() }}
+                    <img src="/images/flags/4x3/{{ strtolower($match->homeTeam->name) }}.svg" width="20" class="inline-block shrink-0">
                 </span>
-                <div class="text-center">
-                    <span class="bg-gray-800 text-white text-sm font-bold px-3 py-1 rounded-lg">
+
+                <div class="text-center shrink-0">
+                    <span class="bg-gray-800 text-white text-sm font-bold px-2 py-1 rounded-lg whitespace-nowrap">
                         {{ $match->home_score }} – {{ $match->away_score }}
                     </span>
                     {{-- Display the actual winner in knockout stages. --}}
                     @if($match->isKnockout() && $match->winner)
-                    <div class="text-xs text-gray-400 mt-1">
-                        ➡️ {{ $match->winner === 'home' ? $match->homeTeam->displayName() : $match->awayTeam->displayName() }}
-                    </div>
+                        <div class="text-xs text-gray-400 mt-1">
+                            ➡️ {{ $match->winner === 'home' ? $match->homeTeam->displayName() : $match->awayTeam->displayName() }}
+                        </div>
                     @endif
                 </div>
-                <span class="text-sm font-semibold text-gray-700 flex-1">
-                    <img src="/images/flags/4x3/{{ strtolower($match->awayTeam->name) }}.svg" width="24"
-                         class="inline-block">
+
+                <span class="text-sm font-semibold text-gray-700 flex-1 flex items-center gap-1">
+                    <img src="/images/flags/4x3/{{ strtolower($match->awayTeam->name) }}.svg" width="20" class="inline-block shrink-0">
                     {{ $match->awayTeam->displayName() }}
                 </span>
             </div>
-            <div class="ml-4 text-right min-w-[100px]">
-                @if($prediction)
-                <div class="text-xs text-gray-400">
-                    {{ __('app.your_prediction') }} :
-                    {{-- In knockout stages, also display the predicted winner. --}}
-                    @if($match->isKnockout())
-                    {{ $prediction->scoreLabel() }}
-                    @if($prediction->predicted_winner)
-                    · {{ $prediction->predicted_winner === 'home' ? $match->homeTeam->displayName() : $match->awayTeam->displayName() }}
-                    @else
-                    · <span class="text-orange-400">{{ __('app.no_winner_predicted') }}</span>
-                    @endif
-                    @else
-                    {{ $prediction->scoreLabel() }}
-                    @endif
+
+            {{-- Ligne 3 : prédiction + points --}}
+            @if($prediction)
+                <div class="flex items-center justify-end gap-2">
+                    <div class="text-xs text-gray-400">
+                        {{ __('app.your_prediction') }} :
+                        @if($match->isKnockout())
+                            {{ $prediction->scoreLabel() }}
+                            @if($prediction->predicted_winner)
+                                · {{ $prediction->predicted_winner === 'home' ? $match->homeTeam->displayName() : $match->awayTeam->displayName() }}
+                            @else
+                                · <span class="text-orange-400">{{ __('app.no_winner_predicted') }}</span>
+                            @endif
+                        @else
+                            {{ $prediction->scoreLabel() }}
+                        @endif
+                    </div>
+                    <div class="text-sm font-bold shrink-0 {{ $prediction->points_earned > 0 ? 'text-green-600' : 'text-gray-400' }}">
+                        +{{ $prediction->points_earned }} pt{{ $prediction->points_earned > 1 ? 's' : '' }}
+                    </div>
                 </div>
-                <div class="text-sm font-bold {{ $prediction->points_earned > 0 ? 'text-green-600' : 'text-gray-400' }}">
-                    +{{ $prediction->points_earned }} pt{{ $prediction->points_earned > 1 ? 's' : '' }}
+            @else
+                <div class="flex items-center justify-end gap-2">
+                    <span class="text-xs text-gray-300">{{ __('app.noprediction') }}</span>
                 </div>
-                @else
-                <div class="text-xs text-gray-300">{{ __('app.noprediction') }}</div>
-                @endif
-            </div>
+            @endif
+
         </div>
+
         @empty
         <div class="px-5 py-4 text-center text-gray-400 text-sm">{{ __('app.noresult') }}</div>
         @endforelse
