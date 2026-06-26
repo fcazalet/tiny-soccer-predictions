@@ -6,7 +6,7 @@ return [
     'recent_results'   => 'Résultats récents',
     'your_prediction'  => 'Votre pronostic',
     'home'             => 'Accueil',
-    'my_results'   => 'Mes Résultats',
+    'all_results'   => 'Les Résultats',
     'results'             => 'Résultats',
     'save'             => 'Valider',
     'edit'             => 'Modifier',

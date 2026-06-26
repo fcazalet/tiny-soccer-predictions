@@ -42,7 +42,7 @@
                 <a href="{{ route('results.index') }}"
                 class="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold transition
                         {{ request()->routeIs('results.*') ? 'bg-green-600 text-white' : 'bg-green-800 text-gray-100 hover:text-gray-600 hover:bg-gray-300' }}">
-                    📋 {{ __('app.my_results') }}
+                    📋 {{ __('app.results') }}
                 </a>
                 <a href="{{ route('replay') }}"
                 class="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold transition

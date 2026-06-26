@@ -6,7 +6,7 @@ return [
     'recent_results'   => 'Recent results',
     'your_prediction'  => 'Your prediction',
     'home'             => 'Home',
-    'my_results'   => 'My results',
+    'all_results'   => 'All Results',
     'results'             => 'Results',
     'save'             => 'Save',
     'edit'             => 'Edit',
