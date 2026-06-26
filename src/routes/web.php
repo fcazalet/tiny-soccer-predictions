@@ -5,6 +5,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ResultsController;
 use App\Http\Controllers\PredictionController;
 use App\Http\Controllers\ReplayController;
+use App\Http\Controllers\FixtureController;
 use App\Http\Controllers\Admin\MatchController as AdminMatchController;
 use App\Http\Controllers\Auth\OtpController;
 use App\Http\Controllers\Auth\DemoLoginController;
@@ -42,6 +43,11 @@ Route::get('/predictions', [ResultsController::class, 'index'])->middleware('aut
 
 // Replay (protected)
 Route::get('/replay', [ReplayController::class, 'replay'])->name('replay');
+
+// Fixtures
+Route::get('/fixtures/{fixture}/odds', [FixtureController::class, 'odds'])
+    ->name('fixtures.odds')
+    ->middleware('auth');
 
 // Dashboard & pronostics (joueurs connectés)
 Route::middleware('auth')->group(function () {
