@@ -180,16 +180,4 @@ class Fixture extends Model
     {
         return __('app.phase_' . $this->phase);
     }
-
-    public function apiSources(): HasMany
-    {
-        return $this->hasMany(FixtureApiSource::class);
-    }
-
-    public function apiFootballId(): ?string
-    {
-        return $this->apiSources
-            ->firstWhere('source', 'api_football')
-            ?->external_id;
-    }
 }
