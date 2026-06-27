@@ -14,9 +14,9 @@ return [
     |
     */
 
-    'api_football' => [
-        'key'       => env('API_FOOTBALL_KEY'),
-        'cache_ttl' => env('API_FOOTBALL_CACHE_TTL', 360),
+    'odds_api' => [
+        'key'       => env('ODDS_API_KEY'),
+        'cache_ttl' => env('ODDS_API_CACHE_TTL', 360),
     ],
 
     'postmark' => [

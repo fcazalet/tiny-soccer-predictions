@@ -74,14 +74,37 @@
             <div class="flex items-center gap-4 mb-4">
                 <div class="flex-1 text-right font-semibold text-gray-800">
                     <img src="/images/flags/4x3/{{ strtolower($match->homeTeam->name) }}.svg" width="24"
-                         class="inline-block">
+                        class="inline-block">
                     <span>{{ $match->homeTeam->displayName() }}</span>
                 </div>
                 <span class="text-gray-400 font-bold">VS</span>
                 <div class="flex-1 font-semibold text-gray-800">
                     <img src="/images/flags/4x3/{{ strtolower($match->awayTeam->name) }}.svg" width="24"
-                         class="inline-block">
+                        class="inline-block">
                     <span>{{ $match->awayTeam->displayName() }}</span>
+                </div>
+            </div>
+
+            {{-- Bouton cotes --}}
+            <div class="relative flex justify-center mb-3">
+                <button type="button"
+                        onclick="toggleOdds({{ $match->id }}, this)"
+                        class="odds-btn text-xs text-gray-400 hover:text-green-600 underline underline-offset-2 transition">
+                    📊 {{ __('app.see_odds') }}
+                </button>
+
+                {{-- Popover --}}
+                <div id="odds-popover-{{ $match->id }}"
+                    class="hidden absolute bottom-8 left-1/2 -translate-x-1/2 z-10
+                            bg-white border border-gray-200 shadow-lg rounded-xl p-4 w-72">
+
+                    {{-- Flèche --}}
+                    <div class="absolute -bottom-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-white border-r border-b border-gray-200 rotate-45"></div>
+
+                    {{-- Contenu chargé en AJAX --}}
+                    <div id="odds-content-{{ $match->id }}" class="text-center text-xs text-gray-400">
+                        Chargement...
+                    </div>
                 </div>
             </div>
 
@@ -196,6 +219,69 @@
         });
     </script>
 </div>
+<script>
+async function toggleOdds(fixtureId, btn) {
+    const popover = document.getElementById(`odds-popover-${fixtureId}`);
+    const content = document.getElementById(`odds-content-${fixtureId}`);
+
+    // Toggle
+    if (!popover.classList.contains('hidden')) {
+        popover.classList.add('hidden');
+        return;
+    }
+
+    popover.classList.remove('hidden');
+
+    // Ne recharge pas si déjà chargé
+    if (content.dataset.loaded) return;
+
+    try {
+        const response = await fetch(`/fixtures/${fixtureId}/odds`);
+
+        if (!response.ok) {
+            content.innerHTML = '<span class="text-gray-300">Aucune cote disponible</span>';
+            return;
+        }
+
+        const data = await response.json();
+        const { odds, probabilities, home_team, away_team } = data;
+
+        content.innerHTML = `
+            <p class="text-xs text-gray-400 mb-3 font-medium uppercase tracking-wide">📊 Cotes moyennes</p>
+            <div class="flex justify-between gap-2 mb-3">
+                <div class="flex-1 bg-green-50 rounded-lg p-2 text-center">
+                    <div class="font-bold text-green-700 text-sm">${odds.home}</div>
+                    <div class="text-gray-400 text-xs truncate">${home_team}</div>
+                    <div class="text-green-600 font-semibold text-xs mt-1">${probabilities.home}%</div>
+                </div>
+                <div class="flex-1 bg-gray-50 rounded-lg p-2 text-center">
+                    <div class="font-bold text-gray-600 text-sm">${odds.draw}</div>
+                    <div class="text-gray-400 text-xs">Nul</div>
+                    <div class="text-gray-500 font-semibold text-xs mt-1">${probabilities.draw}%</div>
+                </div>
+                <div class="flex-1 bg-red-50 rounded-lg p-2 text-center">
+                    <div class="font-bold text-red-600 text-sm">${odds.away}</div>
+                    <div class="text-gray-400 text-xs truncate">${away_team}</div>
+                    <div class="text-red-500 font-semibold text-xs mt-1">${probabilities.away}%</div>
+                </div>
+            </div>
+            <p class="text-xs text-gray-300">Moyenne de ${data.bookmakers_count} bookmakers</p>
+        `;
+
+        content.dataset.loaded = true;
+
+    } catch (e) {
+        content.innerHTML = '<span class="text-red-400">Erreur de chargement</span>';
+    }
+}
+
+// Ferme la popover en cliquant ailleurs
+document.addEventListener('click', (e) => {
+    if (!e.target.closest('.odds-btn') && !e.target.closest('[id^="odds-popover-"]')) {
+        document.querySelectorAll('[id^="odds-popover-"]').forEach(p => p.classList.add('hidden'));
+    }
+});
+</script>
 
 {{-- Résultats récents --}}
 <div>

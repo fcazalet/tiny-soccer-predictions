@@ -38,6 +38,14 @@ class ApiFootballService
         ], endpoint: 'fixtures');
     }
 
+    public function getFixturesByLeague(int $leagueId, int $season): array
+    {
+        return $this->cachedGet("fixtures_league_{$leagueId}_{$season}", [
+            'league' => $leagueId,
+            'season' => $season,
+        ], endpoint: 'fixtures');
+    }
+
     public function getOddsByFixture(int $fixtureId): array
     {
         return $this->cachedGet("odds_fixture_{$fixtureId}", [

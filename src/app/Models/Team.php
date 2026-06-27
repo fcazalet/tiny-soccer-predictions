@@ -38,4 +38,9 @@ class Team extends Model
         //     ? "{$this->flag_emoji} {$name}"
         //     : $name;
     }
+
+    public function oddsApiName(): string
+    {
+        return __("countries.{$this->name}", [], 'en') ?: $this->name;
+    }
 }
