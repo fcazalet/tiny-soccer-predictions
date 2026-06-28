@@ -16,17 +16,10 @@ class FixtureController extends Controller
 
     public function odds(Fixture $fixture): JsonResponse
     {
-       $fixture->loadMissing(['homeTeam', 'awayTeam']);
-
-        $odds = $this->oddsApi->getOddsForFixture(
-            $fixture->homeTeam->oddsApiName(),
-            $fixture->awayTeam->oddsApiName(),
-        );
-
-        if (!$odds) {
+        if (!$fixture->odds) {
             return response()->json(['error' => 'Aucune cote disponible'], 404);
         }
 
-        return response()->json($this->oddsApi->parseAverageOdds($odds));
+        return response()->json($fixture->odds);
     }
 }

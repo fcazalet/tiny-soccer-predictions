@@ -42,6 +42,7 @@ return [
     'started' => 'Commencé',
     'ended' => 'Terminé',
     'replay'    => 'Replay',
+    'see_odds'        => 'Voir cotes',
     
     // REPLAY
     'replay'            => 'Replay',

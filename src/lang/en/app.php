@@ -69,6 +69,7 @@ return [
     'phase_final'     => 'Final',
     'date_hour'       => 'Date & time',
     'create_match'    => 'Create match',
+    'see_odds'        => 'See Odds',
 
     // DEMO
     'demo_choose_role' => 'Please choose a role',

@@ -18,12 +18,14 @@ class Fixture extends Model
         'phase', 'played_at',
         'home_score', 'away_score',
         'winner', // Actual winner (may differ from the score due to extra time or a penalty shootout).
+        'odds',
     ];
 
     protected $casts = [
         'played_at'  => 'datetime',
         'home_score' => 'integer',
         'away_score' => 'integer',
+        'odds' => 'array',
     ];
 
     public function getLocalPlayedAt(): Carbon
