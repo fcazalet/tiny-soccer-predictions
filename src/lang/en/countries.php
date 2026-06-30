@@ -7,7 +7,7 @@ return [
     'CZ' => 'Czech Republic',
 
     'CA' => 'Canada',
-    'BA' => 'Bosnia and Herzegovina',
+    'BA' => 'Bosnia & Herzegovina',
     'QA' => 'Qatar',
     'CH' => 'Switzerland',
 
