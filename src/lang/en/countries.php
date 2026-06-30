@@ -16,7 +16,7 @@ return [
     'HT' => 'Haiti',
     'GB-SCT' => 'Scotland',
 
-    'US' => 'United States',
+    'US' => 'USA',
     'PY' => 'Paraguay',
     'AU' => 'Australia',
     'TR' => 'Turkey',
