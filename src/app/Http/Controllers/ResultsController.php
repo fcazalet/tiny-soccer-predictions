@@ -12,7 +12,10 @@ class ResultsController extends Controller
         $phase = request('phase');
 
         // $allFixtures = Fixture::whereHas('predictions', fn($q) => $q->where('user_id', $user->id))->get();
-        $allFixtures = Fixture::all()->sortBy('played_at');
+        $allFixtures = Fixture::all();
+        $filteredFixtures = Fixture::all()
+            ->when($phase, fn($q) => $q->where('phase', $phase))
+            ->sortBy('played_at');
         $phases = $allFixtures->map(fn($m) => $m->phase)->unique()->values();
 
         // sum of points_earned for the current user
@@ -30,6 +33,7 @@ class ResultsController extends Controller
         return view('results', compact(
             'phases',
             'allFixtures',
+            'filteredFixtures',
             'totalPointsEarned',
             'userPredictions',
             'totalFixturesCount',

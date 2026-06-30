@@ -4,7 +4,7 @@
 @section('content')
 
 <div class="mb-6 flex items-center justify-between">
-    <h2 class="text-xl font-bold text-gray-800">📋 {{ __('app.my_results') }}</h2>
+    <h2 class="text-xl font-bold text-gray-800">📋 {{ __('app.results') }}</h2>
     <div class="flex gap-4 text-sm">
         <div class="text-center">
             <div class="font-bold text-green-600 text-lg">{{ $totalPointsEarned }}</div>
@@ -42,7 +42,7 @@
 
 {{-- Predictions list --}}
 <div class="bg-white rounded-2xl shadow overflow-hidden">
-    @forelse($allFixtures as $fixture)
+    @forelse($filteredFixtures as $fixture)
     @php $prediction = $userPredictions->get($fixture->id) @endphp
     <div class="px-5 py-4 border-b border-gray-100 last:border-0">
 
