@@ -13,6 +13,26 @@ services:
     networks:
       - tinysp
 
+  scheduler:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: tinysp_scheduler
+    restart: unless-stopped
+    volumes:
+      - ./src:/var/www/html
+    depends_on:
+      db:
+        condition: service_healthy
+    command: php artisan schedule:work
+    networks:
+      - tinysp
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
   nginx:
     image: nginx:alpine
     container_name: tinysp_nginx
