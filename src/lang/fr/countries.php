@@ -53,7 +53,7 @@ return [
     'JO' => 'Jordanie',
 
     'PT' => 'Portugal',
-    'CD' => 'République démocratique du Congo',
+    'CD' => 'RD Congo',
     'UZ' => 'Ouzbékistan',
     'CO' => 'Colombie',
 
