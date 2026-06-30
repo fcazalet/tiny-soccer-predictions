@@ -239,7 +239,7 @@ async function toggleOdds(fixtureId, btn) {
         const response = await fetch(`/fixtures/${fixtureId}/odds`);
 
         if (!response.ok) {
-            content.innerHTML = '<span class="text-gray-300">Aucune cote disponible</span>';
+            content.innerHTML = "<span class='text-gray-300'>{{ __('app.no_odds')}}</span>";
             return;
         }
 
@@ -247,7 +247,7 @@ async function toggleOdds(fixtureId, btn) {
         const { odds, probabilities, home_team, away_team } = data;
 
         content.innerHTML = `
-            <p class="text-xs text-gray-400 mb-3 font-medium uppercase tracking-wide">📊 Cotes moyennes</p>
+            <p class="text-xs text-gray-400 mb-3 font-medium uppercase tracking-wide">📊 {{__('app.odds_means')}}</p>
             <div class="flex justify-between gap-2 mb-3">
                 <div class="flex-1 bg-green-50 rounded-lg p-2 text-center">
                     <div class="font-bold text-green-700 text-sm">${odds.home}</div>
@@ -265,7 +265,7 @@ async function toggleOdds(fixtureId, btn) {
                     <div class="text-red-500 font-semibold text-xs mt-1">${probabilities.away}%</div>
                 </div>
             </div>
-            <p class="text-xs text-gray-300">Moyenne de ${data.bookmakers_count} bookmakers</p>
+            <p class="text-xs text-gray-300">{{ __('app.odds_mean')}} ${data.bookmakers_count} bookmakers</p>
         `;
 
         content.dataset.loaded = true;

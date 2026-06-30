@@ -70,6 +70,9 @@ return [
     'date_hour'       => 'Date & time',
     'create_match'    => 'Create match',
     'see_odds'        => 'See Odds',
+    'no_odds'        => 'No odds available',
+    'odds_means' => 'Odds Means',
+    'odds_mean' => 'Mean of',
 
     // DEMO
     'demo_choose_role' => 'Please choose a role',

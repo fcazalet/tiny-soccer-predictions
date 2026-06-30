@@ -43,6 +43,9 @@ return [
     'ended' => 'Terminé',
     'replay'    => 'Replay',
     'see_odds'        => 'Voir cotes',
+    'no_odds'        => 'Aucune cote disponible',
+    'odds_means' => 'Cotes moyennes',
+    'odds_mean' => 'Moyenne de',
     
     // REPLAY
     'replay'            => 'Replay',
