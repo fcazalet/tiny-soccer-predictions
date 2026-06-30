@@ -8,4 +8,4 @@ Artisan::command('inspire', function () {
     $this->comment(Inspiring::quote());
 })->purpose('Display an inspiring quote');
 
-Schedule::command('fixtures:snapshot-odds')->dailyAt('19:35');
+Schedule::command('fixtures:snapshot-odds')->dailyAt('06:00');
