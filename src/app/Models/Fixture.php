@@ -12,6 +12,44 @@ class Fixture extends Model
 
     // Knockout stages where the winner must be specified separately from the score.
     const KNOCKOUT_PHASES = ['r32', 'r16', 'qf', 'sf', 'final'];
+    const POINTS = [
+        'group' => [
+            'exact_score' => 3,
+            'point_diff'  => 2,
+            'winner'      => 1,
+            'bonus'       => 0,
+        ],
+        'r32' => [
+            'exact_score' => 3,
+            'point_diff'  => 2,
+            'winner'      => 1,
+            'bonus'       => 1,
+        ],
+        'r16' => [
+            'exact_score' => 4,
+            'point_diff'  => 3,
+            'winner'      => 1,
+            'bonus'       => 1,
+        ],
+        'qf' => [
+            'exact_score' => 5,
+            'point_diff'  => 3,
+            'winner'      => 2,
+            'bonus'       => 1,
+        ],
+        'sf' => [
+            'exact_score' => 6,
+            'point_diff'  => 4,
+            'winner'      => 2,
+            'bonus'       => 1,
+        ],
+        'final' => [
+            'exact_score' => 8,
+            'point_diff'  => 5,
+            'winner'      => 3,
+            'bonus'       => 2,
+        ],
+    ];
 
     protected $fillable = [
         'home_team_id', 'away_team_id',
@@ -120,7 +158,7 @@ class Fixture extends Model
 
         // Bonus qualifié en phase éliminatoire
         if ($this->isKnockout() && $predictedWinner !== null && $predictedWinner === $this->winner) {
-            $points += 1;
+            $points += self::POINTS[$this->phase]['bonus'];;
         }
 
         return $points;
@@ -133,7 +171,7 @@ class Fixture extends Model
     {
         // Score exact
         if ($predictedHome === $this->home_score && $predictedAway === $this->away_score) {
-            return 3;
+            return self::POINTS[$this->phase]['exact_score'];
         }
 
         $predictedResult = match(true) {
@@ -151,7 +189,12 @@ class Fixture extends Model
         $predictedDiff = $predictedHome - $predictedAway;
         $actualDiff    = $this->home_score - $this->away_score;
 
-        return $predictedDiff === $actualDiff ? 2 : 1;
+        if ($predictedDiff === $actualDiff) {
+            return self::POINTS[$this->phase]['point_diff'];
+        } 
+        else {
+            return self::POINTS[$this->phase]['winner'];
+        }
     }
 
     // -----------------------------------------------------------------------
