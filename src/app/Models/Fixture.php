@@ -32,22 +32,22 @@ class Fixture extends Model
             'bonus'       => 1,
         ],
         'qf' => [
-            'exact_score' => 5,
-            'point_diff'  => 3,
-            'winner'      => 2,
-            'bonus'       => 1,
-        ],
-        'sf' => [
-            'exact_score' => 6,
+            'exact_score' => 7,
             'point_diff'  => 4,
-            'winner'      => 2,
-            'bonus'       => 1,
-        ],
-        'final' => [
-            'exact_score' => 8,
-            'point_diff'  => 5,
             'winner'      => 3,
             'bonus'       => 2,
+        ],
+        'sf' => [
+            'exact_score' => 10,
+            'point_diff'  => 6,
+            'winner'      => 4,
+            'bonus'       => 2,
+        ],
+        'final' => [
+            'exact_score' => 15,
+            'point_diff'  => 8,
+            'winner'      => 5,
+            'bonus'       => 3,
         ],
     ];
 
