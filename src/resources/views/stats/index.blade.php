@@ -27,9 +27,9 @@
     <div class="mb-4">
         <h3 class="text-sm font-semibold text-gray-500 uppercase mb-2">{{ __('app.phase_'.$phase) }}</h3>
         <div class="bg-white rounded-2xl shadow overflow-hidden">
-            @foreach($rows->sortByDesc('total_points') as $i => $row)
+            @foreach($rows->sortByDesc('total_points')->values() as $j => $row)
             <div class="flex items-center justify-between px-5 py-2.5 border-b border-gray-100 last:border-0">
-                <span class="text-gray-700">{{ $i + 1 }}. {{ $row->name }}</span>
+                <span class="text-gray-700">{{ $j + 1 }}. {{ $row->name }}</span>
                 <span class="font-bold text-green-700">{{ $row->total_points }} pts</span>
             </div>
             @endforeach

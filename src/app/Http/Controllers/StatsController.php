@@ -38,6 +38,9 @@ class StatsController extends Controller
             ->groupBy('users.id', 'users.name', 'fixtures.phase')
             ->get()
             ->groupBy('phase');
+        
+        // var_dump(json_encode($pointsByPlayerAndPhase));
+        // die();  
 
         // 3. Matchs avec le plus de scores exacts
         $mostExactFixtures = Fixture::query()
