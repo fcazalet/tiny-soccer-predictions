@@ -20,6 +20,7 @@ class ResultsController extends Controller
 
         // sum of points_earned for the current user
         $totalPointsEarned = $user->predictions()->sum('points_earned');
+        $totalPredictions = $user->predictions()->count();
 
         $userPredictions = $user->predictions()
             ->whereIn('fixture_id', $allFixtures->pluck('id'))
@@ -32,11 +33,11 @@ class ResultsController extends Controller
 
         return view('results', compact(
             'phases',
-            'allFixtures',
             'filteredFixtures',
             'totalPointsEarned',
-            'userPredictions',
+            'totalPredictions',
             'totalFixturesCount',
+            'userPredictions',
         ));
     }
 }

@@ -11,11 +11,11 @@
             <div class="text-gray-400 text-xs uppercase tracking-wide">{{ __('app.points') }}</div>
         </div>
         <div class="text-center">
-            <div class="font-bold text-green-600 text-lg">{{ $userPredictions->count() }}</div>
+            <div class="font-bold text-green-600 text-lg">{{ $totalPredictions }}</div>
             <div class="text-gray-400 text-xs uppercase tracking-wide">{{ __('app.predicted') }}</div>
         </div>
         <div class="text-center">
-            <div class="font-bold text-gray-700 text-lg">{{ $userPredictions->count() }} / {{ $totalFixturesCount }}
+            <div class="font-bold text-gray-700 text-lg">{{ $totalPredictions }} / {{ $totalFixturesCount }}
             </div>
             <div class="text-gray-400 text-xs uppercase tracking-wide">{{ __('app.predictions') }}</div>
         </div>
