@@ -22,7 +22,7 @@ class StatsController extends Controller
             ->groupBy('user_id')
             ->orderByDesc('exact_count')
             ->with('user')
-            ->take(5)
+            ->take(10)
             ->get();
 
         // 2. Classement des joueurs par phase (total points)
