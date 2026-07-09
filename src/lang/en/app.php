@@ -47,6 +47,7 @@ return [
     // Other Players Predictions
     'predictions_of'    => 'Predictions of',
     'click_player_hint' => 'Click on a player to see history',
+    'prediction'        => 'Prediction',
 
     // REPLAY
     'replay'            => 'Replay',
