@@ -51,6 +51,7 @@ return [
     // Other Players Predictions
     'predictions_of'    => 'Pronostics de',
     'click_player_hint' => 'Cliquez sur un joueur pour voir son historique',
+    'prediction'        => 'Pronostic',
     
     // REPLAY
     'replay'            => 'Replay',
