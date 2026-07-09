@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ResultsController;
+use App\Http\Controllers\PlayerController;
 use App\Http\Controllers\PredictionController;
 use App\Http\Controllers\ReplayController;
 use App\Http\Controllers\FixtureController;
@@ -56,6 +57,11 @@ Route::middleware('auth')->group(function () {
     Route::post('/predictions/{match}', [PredictionController::class, 'store'])->name('predictions.store');
     Route::post('/predictions/{match}/json', [PredictionController::class, 'storeJson'])->name('predictions.store.json');
 });
+
+// Other Players predictions view
+Route::get('/players/{player}/predictions', [PlayerController::class, 'predictions'])
+    ->middleware('auth')
+    ->name('players.predictions');
 
 // Administration
 Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {

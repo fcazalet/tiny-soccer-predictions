@@ -6,6 +6,7 @@ return [
     'recent_results'   => 'Recent results',
     'your_prediction'  => 'Your prediction',
     'home'             => 'Home',
+    'back_to_home' => 'Back to home',
     'all_results'   => 'All Results',
     'results'             => 'Results',
     'save'             => 'Save',
@@ -42,6 +43,10 @@ return [
     'started' => 'Started',
     'ended' => 'Ended',
     'replay'    => 'Replay',
+
+    // Other Players Predictions
+    'predictions_of'    => 'Predictions of',
+    'click_player_hint' => 'Click on a player to see history',
 
     // REPLAY
     'replay'            => 'Replay',

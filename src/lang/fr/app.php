@@ -6,6 +6,7 @@ return [
     'recent_results'   => 'Résultats récents',
     'your_prediction'  => 'Votre pronostic',
     'home'             => 'Accueil',
+    'back_to_home' => 'Retourner à l\'accueil',
     'all_results'   => 'Les Résultats',
     'results'             => 'Résultats',
     'save'             => 'Valider',
@@ -46,6 +47,10 @@ return [
     'no_odds'        => 'Aucune cote disponible',
     'odds_means' => 'Cotes moyennes',
     'odds_mean' => 'Moyenne de',
+
+    // Other Players Predictions
+    'predictions_of'    => 'Pronostics de',
+    'click_player_hint' => 'Cliquez sur un joueur pour voir son historique',
     
     // REPLAY
     'replay'            => 'Replay',

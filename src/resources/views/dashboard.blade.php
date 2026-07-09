@@ -21,9 +21,17 @@
             <tr class="{{ $player->id === auth()->id() ? 'bg-green-50 font-semibold' : '' }}">
                 <td class="px-4 py-3 text-gray-400">{{ $i + 1 }}</td>
                 <td class="px-4 py-3">
-                    {{ $player->name }}
                     @if($player->id === auth()->id())
+                    {{ $player->name }}
                     <span class="text-green-600 text-xs ml-1">(vous)</span>
+                    @else
+                    <a href="{{ route('players.predictions', $player) }}"
+                    class="inline-flex items-center gap-1 text-gray-800 underline decoration-gray-300 decoration-dotted underline-offset-2 hover:text-green-600 hover:decoration-green-400 transition">
+                        {{ $player->name }}
+                        <svg class="w-3 h-3 text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                        </svg>
+                    </a>
                     @endif
                 </td>
                 <td class="px-4 py-3 text-right text-gray-500">
@@ -41,6 +49,9 @@
             </tbody>
         </table>
     </div>
+    <p class="text-xs text-gray-400 mt-2 px-1">
+    💡 {{ __('app.click_player_hint') }}
+    </p>
 </div>
 
 {{-- Fixtures to predict --}}
