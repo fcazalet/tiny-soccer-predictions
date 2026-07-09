@@ -55,7 +55,7 @@ return [
     'ranking_by_phase'    => 'Player rankings by phase (total points)',
     'most_exact_fixtures' => 'Matches with the most exact score predictions',
     'no_winner_found'     => 'Matches where no one predicted the correct winner',
-    'most_audacious'      => 'Most audacious player, voting against the majority',
+    'most_audacious'      => 'Most audacious players voting against the others (number of times)',
 
     // REPLAY
     'replay'            => 'Replay',

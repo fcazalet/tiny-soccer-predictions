@@ -32,6 +32,7 @@ class StatsController extends Controller
             ->join('fixtures', 'fixtures.id', '=', 'predictions.fixture_id')
             ->join('users', 'users.id', '=', 'predictions.user_id')
             ->whereIn('predictions.fixture_id', $playedFixtureIds)
+            ->where('users.role', 'player')
             ->select('users.id as user_id', 'users.name', 'fixtures.phase',
                      DB::raw('sum(predictions.points_earned) as total_points'))
             ->groupBy('users.id', 'users.name', 'fixtures.phase')

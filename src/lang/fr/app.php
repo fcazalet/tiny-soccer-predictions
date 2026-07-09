@@ -59,7 +59,7 @@ return [
     'ranking_by_phase'  => 'Classement des joueurs par phase (total points)',
     'most_exact_fixtures'  => 'Matchs avec le plus de scores exacts',
     'no_winner_found'  => 'Matchs où personne n\'a trouvé le bon vainqueur',
-    'most_audacious'  => 'Joueur le plus audacieux votant à l\'inverse des autres',
+    'most_audacious'  => 'Joueurs les plus audacieux votant l\'inverse des autres (nb fois)',
     
     // REPLAY
     'replay'            => 'Replay',
