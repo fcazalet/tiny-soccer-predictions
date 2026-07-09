@@ -9,6 +9,7 @@ return [
     'back_to_home' => 'Back to home',
     'all_results'   => 'All Results',
     'results'             => 'Results',
+    'stats'             => 'Statistics',
     'save'             => 'Save',
     'edit'             => 'Edit',
     'logout'           => 'Logout',
@@ -48,6 +49,13 @@ return [
     'predictions_of'    => 'Predictions of',
     'click_player_hint' => 'Click on a player to see history',
     'prediction'        => 'Prediction',
+
+    // Stats
+    'top_exact_scores'    => 'Top exact score predictors by player',
+    'ranking_by_phase'    => 'Player rankings by phase (total points)',
+    'most_exact_fixtures' => 'Matches with the most exact score predictions',
+    'no_winner_found'     => 'Matches where no one predicted the correct winner',
+    'most_audacious'      => 'Most audacious player, voting against the majority',
 
     // REPLAY
     'replay'            => 'Replay',

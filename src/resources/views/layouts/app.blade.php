@@ -44,6 +44,11 @@
                         {{ request()->routeIs('results.*') ? 'bg-green-600 text-white' : 'bg-green-800 text-gray-100 hover:text-gray-600 hover:bg-gray-300' }}">
                     📋 {{ __('app.results') }}
                 </a>
+                <a href="{{ route('stats.index') }}"
+                class="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold transition
+                        {{ request()->routeIs('stats.index') ? 'bg-green-600 text-white' : 'bg-green-800 text-gray-100 hover:text-gray-600 hover:bg-gray-300' }}">
+                    ⏱️ {{ __('app.stats') }}
+                </a>
                 <a href="{{ route('replay') }}"
                 class="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold transition
                         {{ request()->routeIs('replay') ? 'bg-green-600 text-white' : 'bg-green-800 text-gray-100 hover:text-gray-600 hover:bg-gray-300' }}">

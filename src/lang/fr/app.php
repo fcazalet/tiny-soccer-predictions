@@ -9,6 +9,7 @@ return [
     'back_to_home' => 'Retourner à l\'accueil',
     'all_results'   => 'Les Résultats',
     'results'             => 'Résultats',
+    'stats'             => 'Statistiques',
     'save'             => 'Valider',
     'edit'             => 'Modifier',
     'logout'           => 'Déconnexion',
@@ -52,6 +53,13 @@ return [
     'predictions_of'    => 'Pronostics de',
     'click_player_hint' => 'Cliquez sur un joueur pour voir son historique',
     'prediction'        => 'Pronostic',
+
+    // Stats
+    'top_exact_scores'  => 'Top "bons scores" (pronostics exacts) par joueur',
+    'ranking_by_phase'  => 'Classement des joueurs par phase (total points)',
+    'most_exact_fixtures'  => 'Matchs avec le plus de scores exacts',
+    'no_winner_found'  => 'Matchs où personne n\'a trouvé le bon vainqueur',
+    'most_audacious'  => 'Joueur le plus audacieux votant à l\'inverse des autres',
     
     // REPLAY
     'replay'            => 'Replay',

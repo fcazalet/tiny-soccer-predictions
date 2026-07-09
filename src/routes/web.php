@@ -7,6 +7,7 @@ use App\Http\Controllers\PlayerController;
 use App\Http\Controllers\PredictionController;
 use App\Http\Controllers\ReplayController;
 use App\Http\Controllers\FixtureController;
+use App\Http\Controllers\StatsController;
 use App\Http\Controllers\Admin\MatchController as AdminMatchController;
 use App\Http\Controllers\Auth\OtpController;
 use App\Http\Controllers\Auth\DemoLoginController;
@@ -56,6 +57,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::post('/predictions/{match}', [PredictionController::class, 'store'])->name('predictions.store');
     Route::post('/predictions/{match}/json', [PredictionController::class, 'storeJson'])->name('predictions.store.json');
+    Route::get('/stats', [StatsController::class, 'index'])->name('stats.index');
 });
 
 // Other Players predictions view
